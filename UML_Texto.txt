@@ -1,0 +1,53 @@
+@startuml UML_Imagen
+hide empty methods
+hide empty fields
+
+class Comprador {
+
+}
+class Expendedor {
+
+}
+class Deposito<T> {
+    
+}
+abstract Moneda {
+
+}
+abstract Producto {
+
+}
+abstract Bebida {
+
+}
+abstract Dulce {
+
+}
+
+class Moneda1500
+class Moneda1000
+class Moneda500
+class Moneda100
+
+class CocaCola
+class Sprite
+class Fanta
+
+class Snickers
+class Super8
+
+Comprador --> Expendedor
+Expendedor o-- Deposito
+Producto <|-- Bebida
+Producto <|-- Dulce
+
+Moneda <|-- Moneda100
+Moneda <|-- Moneda500
+Moneda <|-- Moneda1000
+Moneda <|-- Moneda1500
+Bebida <|-- CocaCola
+Bebida <|-- Sprite
+Bebida <|-- Fanta 
+Dulce <|-- Snickers
+Dulce <|-- Super8
+@enduml
