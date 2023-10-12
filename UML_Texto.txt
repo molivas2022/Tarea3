@@ -15,18 +15,18 @@ abstract Moneda {
 
 }
 abstract Producto {
-    {field} - int serie;
-    {method} {abstract} + String consumir();
+    {field} - serie : int
+    {method} {abstract} + consumir() : String
 }
 abstract Bebida {
-    {method} {abstract} + String beber();
+    {method} {abstract} + beber() : String
 }
 abstract Dulce {
-    {method} {abstract} + String comer();
+    {method} {abstract} + comer() : String
 }
 enum Catalogo {
-    {field} - int precio;
-    {field} - String sabor;
+    {field} - precio : int
+    {field} - sabor : Sabor
 }
 
 class Moneda1500
