@@ -3,30 +3,36 @@ hide empty methods
 hide empty fields
 
 class Comprador {
-
+  {field} - sabor : String
+  {field} - vuelto : int
+  {method} + queConsumiste() : String
+  {method} + cuantoVuelto() : int
 }
 class Expendedor {
-
+  {field} - precioBebidas : int
+  {field} - precioDulces: int
+  {method} + getVuelto() : Moneda
+  {method} + comprarProducto(Moneda, int) : Producto
 }
 class Deposito<T> {
-    
+    {method} + addObjeto(T) : void 
+    {method} + getObjeto() : T
 }
-abstract Moneda {
-
+abstract Moneda implements Comparable {
+  {method} {abstract} + getValor() : String
+  {method} + getSerie() : String
 }
 abstract Producto {
     {field} - serie : int
     {method} {abstract} + consumir() : String
 }
 abstract Bebida {
-    {method} {abstract} + beber() : String
 }
 abstract Dulce {
-    {method} {abstract} + comer() : String
 }
 enum Catalogo {
     {field} - precio : int
-    {field} - sabor : Sabor
+    {field} - id : int
 }
 
 class Moneda1500
@@ -41,18 +47,28 @@ class Fanta
 class Snickers
 class Super8
 
-Comprador --> Expendedor
+' Dependencias
+Comprador ..> Expendedor
+Expendedor ..> Producto
+Expendedor ..> Moneda
+Expendedor ..> Catalogo
+
+' Asociaciones
 Expendedor o-- Deposito
+
+' Herencias Producto
 Producto <|-- Bebida
 Producto <|-- Dulce
-
-Moneda <|-- Moneda100
-Moneda <|-- Moneda500
-Moneda <|-- Moneda1000
-Moneda <|-- Moneda1500
 Bebida <|-- CocaCola
 Bebida <|-- Sprite
 Bebida <|-- Fanta 
 Dulce <|-- Snickers
 Dulce <|-- Super8
+
+' Herencias Moneda
+Moneda <|-- Moneda100
+Moneda <|-- Moneda500
+Moneda <|-- Moneda1000
+Moneda <|-- Moneda1500
+
 @enduml
