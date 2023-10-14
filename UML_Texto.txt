@@ -19,7 +19,7 @@ class Deposito<T> {
     {method} + getObjeto() : T
 }
 abstract Moneda implements Comparable {
-  {method} {abstract} + getValor() : String
+  {method} {abstract} + getValor() : int
   {method} + getSerie() : String
 }
 abstract Producto {
