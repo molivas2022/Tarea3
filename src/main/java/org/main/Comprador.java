@@ -1,5 +1,7 @@
 package org.main;
+import org.main.Expendedor;
 import org.main.Moneda.*;
+import org.main.Producto.Producto;
 
 public class Comprador {
     private String sabor;

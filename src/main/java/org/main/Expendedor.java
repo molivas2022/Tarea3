@@ -1,5 +1,6 @@
 package org.main;
 import org.main.Moneda.*;
+import org.main.Producto.*;
 
 public class Expendedor {
     private int precioBebidas;

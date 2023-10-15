@@ -1,4 +1,4 @@
-package org.main;
+package org.main.Producto;
 
 public abstract class Bebida extends Producto {
     public Bebida(String serie) {

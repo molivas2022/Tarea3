@@ -1,4 +1,4 @@
-package org.main;
+package org.main.Producto;
 
 public abstract class Producto {
     private String serie;
