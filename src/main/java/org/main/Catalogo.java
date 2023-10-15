@@ -1,11 +1,11 @@
 package org.main;
 
 public enum Catalogo {
-    COCACOLA(1600, 1),
-    SPRITE(1600, 2),
-    FANTA(1600, 3),
-    SNICKERS(1200, 4),
-    SUPER8(1200, 5);
+    COCACOLA(1200, 1),
+    SPRITE(1200, 2),
+    FANTA(1200, 3),
+    SNICKERS(800, 4),
+    SUPER8(800, 5);
     private int precio;
     private int id;
     Catalogo (int precio, int id) {
