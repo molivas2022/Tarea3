@@ -8,7 +8,7 @@ public enum Catalogo {
     SUPER8(1200, 5);
     private int precio;
     private int id;
-    private Catalogo (int precio, int id) {
+    Catalogo (int precio, int id) {
         this.precio = precio;
         this.id = id;
     }
@@ -24,4 +24,5 @@ public enum Catalogo {
     public void setId(int id) {
         this.id = id;
     }
+
 }
