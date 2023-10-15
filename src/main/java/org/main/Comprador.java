@@ -23,4 +23,8 @@ public class Comprador {
     public String queConsumiste() {
         return sabor;
     }
+
+    public int getVuelto() {
+        return vuelto;
+    }
 }
