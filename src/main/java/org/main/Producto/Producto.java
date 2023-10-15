@@ -8,7 +8,7 @@ public abstract class Producto {
     }
 
     abstract public String consumir();
-    
+
     public String getSerie() {
         return serie;
     }
