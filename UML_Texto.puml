@@ -23,7 +23,7 @@ abstract Moneda implements Comparable {
   {method} + getSerie() : String
 }
 abstract Producto {
-    {field} - serie : int
+    {field} - serie : String
     {method} {abstract} + consumir() : String
 }
 abstract Bebida {
