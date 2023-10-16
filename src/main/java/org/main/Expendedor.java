@@ -34,7 +34,8 @@ public class Expendedor {
     public Producto comprarProducto(Moneda moneda, int id)
             throws PagoInsuficienteException,
             PagoIncorrectoException,
-            NoHayProductoException
+            NoHayProductoException,
+            IdProductoNoExiste
     {
         if (moneda == null) {
             throw new PagoIncorrectoException("No se ha hecho ingreso de una moneda.");
@@ -59,9 +60,8 @@ public class Expendedor {
             precio = Catalogo.SUPER8.getPrecio();
             dep = depSuper8;
         } else {
-            // TODO: Crear una ProductoIdNoExiste
             depVuelto.addObjeto(moneda);
-            return null;
+            throw new IdProductoNoExiste("No existe un producto con el ID ingresado.");
         }
 
         if (moneda.getValor() < precio) {
