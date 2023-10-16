@@ -8,10 +8,13 @@ public class Comprador {
     private int vuelto;
     public Comprador(Moneda moneda, int id, Expendedor expendedor) {
         sabor = "nada";
-        Producto compra = expendedor.comprarProducto(moneda, id);
-        if (compra != null) {
-            sabor = compra.consumir();
+        Producto compra;
+        try {
+            compra = expendedor.comprarProducto(moneda, id) ;
+        } catch (NoHayProductoException e) {
+            throw e;
         }
+        sabor = compra.consumir();
 
         vuelto = 0;
         Moneda moneda_vuelto = expendedor.getVuelto();

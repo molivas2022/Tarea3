@@ -66,11 +66,10 @@ public class Expendedor {
             return null;
         }
 
-        Producto compra = (Producto)dep.getObjeto();
+        Producto compra = (Producto) dep.getObjeto();
         if (compra == null) {
-            // TODO: NoHayProductoException
             depVuelto.addObjeto(moneda);
-            return null;
+            throw new NoHayProductoException();
         }
 
         for (int i = 0; i < (moneda.getValor() - precio); i += 100) {
@@ -79,7 +78,10 @@ public class Expendedor {
         return compra;
     }
     public Moneda getVuelto() {
-        return depVuelto.getObjeto();
+        try {
+            return depVuelto.getObjeto();
+        } catch (NoHayProductoException e) {
+            return null;
+        }
     }
-
 }
