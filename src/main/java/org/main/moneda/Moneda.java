@@ -1,4 +1,4 @@
-package org.main.Moneda;
+package org.main.moneda;
 
 abstract public class Moneda implements Comparable {
     public String getSerie() {

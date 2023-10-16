@@ -1,8 +1,8 @@
 package org.main;
-import org.main.CustomException.NoHayProductoException;
-import org.main.CustomException.PagoIncorrectoException;
-import org.main.CustomException.PagoInsuficienteException;
-import org.main.Moneda.*;
+import org.main.customexception.NoHayProductoException;
+import org.main.customexception.PagoIncorrectoException;
+import org.main.customexception.PagoInsuficienteException;
+import org.main.moneda.*;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package org.main.Producto;
+package org.main.producto;
 
 public class Super8 extends Dulce {
     public Super8(String serie) {

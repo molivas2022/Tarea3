@@ -1,9 +1,9 @@
 package org.main;
-import org.main.CustomException.NoHayProductoException;
-import org.main.CustomException.PagoIncorrectoException;
-import org.main.CustomException.PagoInsuficienteException;
-import org.main.Moneda.*;
-import org.main.Producto.Producto;
+import org.main.customexception.NoHayProductoException;
+import org.main.customexception.PagoIncorrectoException;
+import org.main.customexception.PagoInsuficienteException;
+import org.main.moneda.*;
+import org.main.producto.Producto;
 
 public class Comprador {
     private String sabor;

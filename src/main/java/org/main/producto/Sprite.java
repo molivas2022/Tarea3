@@ -1,4 +1,4 @@
-package org.main.Producto;
+package org.main.producto;
 
 public class Sprite extends Bebida {
     public Sprite(String serie) {
