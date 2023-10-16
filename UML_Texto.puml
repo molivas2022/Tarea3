@@ -49,6 +49,7 @@ class Super8
 
 ' Dependencias
 Comprador ..> Expendedor
+Comprador ..> Moneda
 Expendedor ..> Producto
 Expendedor ..> Moneda
 Expendedor ..> Catalogo
