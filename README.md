@@ -8,4 +8,4 @@ Segunda tarea del curso de Programación II.
 ------------------------------------------------
 
 ## UML de la Aplicación
-![UML de la Aplicación](/UML_Imagen.png?raw=true)
+![UML de la Aplicación](/UML_Imagen.png?raw=true?)
