@@ -1,5 +1,5 @@
 package org.main;
-import org.main.customexception.IdProductoNoExiste;
+import org.main.customexception.IdProductoNoExisteException;
 import org.main.customexception.PagoIncorrectoException;
 import org.main.moneda.*;
 // TODO: Actualizar UML con métodos nuevos, etc.
@@ -20,7 +20,7 @@ public class Main {
         try {
             // Creamos un comprador, el cual va a intentar comprar un Snickers con la
             // moneda de 1000 pesos que le entregaremos
-            com = new Comprador(mon, Catalogo.SNICKERS.getId(), exp);
+            com = new Comprador(null, 1, exp);
 
             // Le consultamos el vuelto al comprador.
             System.out.println( com.getVuelto() );
@@ -28,7 +28,7 @@ public class Main {
             // Podemos consultar tambien por el sabor del producto que compró
             System.out.println( com.queConsumiste() );
 
-        } catch (IdProductoNoExiste | PagoIncorrectoException e) {
+        } catch (IdProductoNoExisteException | PagoIncorrectoException e) {
             System.err.println(e.getMessage());
         }
     }

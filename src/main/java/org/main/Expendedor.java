@@ -35,7 +35,7 @@ public class Expendedor {
             throws PagoInsuficienteException,
             PagoIncorrectoException,
             NoHayProductoException,
-            IdProductoNoExiste
+            IdProductoNoExisteException
     {
         if (moneda == null) {
             throw new PagoIncorrectoException("No se ha hecho ingreso de una moneda.");
@@ -61,7 +61,7 @@ public class Expendedor {
             dep = depSuper8;
         } else {
             depVuelto.addObjeto(moneda);
-            throw new IdProductoNoExiste("No existe un producto con el ID ingresado.");
+            throw new IdProductoNoExisteException("No existe un producto con el ID ingresado.");
         }
 
         if (moneda.getValor() < precio) {
