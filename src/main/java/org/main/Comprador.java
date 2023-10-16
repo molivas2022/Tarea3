@@ -1,7 +1,7 @@
 package org.main;
+import org.main.CustomException.NoHayProductoException;
 import org.main.CustomException.PagoIncorrectoException;
 import org.main.CustomException.PagoInsuficienteException;
-import org.main.Expendedor;
 import org.main.Moneda.*;
 import org.main.Producto.Producto;
 
@@ -10,15 +10,12 @@ public class Comprador {
     private int vuelto;
     public Comprador(Moneda moneda, int id, Expendedor expendedor)
             throws PagoInsuficienteException,
-            PagoIncorrectoException
+            PagoIncorrectoException,
+            NoHayProductoException
     {
         sabor = "nada";
-        Producto compra;
-        try {
-            compra = expendedor.comprarProducto(moneda, id) ;
-        } catch (NoHayProductoException e) {
-            throw e;
-        }
+        /* En esta llamada a comprarProducto podría terminar lanzandose una excepción. */
+        Producto compra = expendedor.comprarProducto(moneda, id);
         sabor = compra.consumir();
 
         vuelto = 0;

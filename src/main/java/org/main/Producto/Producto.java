@@ -12,4 +12,12 @@ public abstract class Producto {
     public String getSerie() {
         return serie;
     }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "serie: '" + serie + '\'' +
+                ", sabor: '" + this.consumir() + '\'' +
+                '}';
+    }
 }
