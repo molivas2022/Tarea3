@@ -1,4 +1,5 @@
 package org.main;
+import org.main.customexception.IdProductoNoExiste;
 import org.main.customexception.NoHayProductoException;
 import org.main.customexception.PagoIncorrectoException;
 import org.main.customexception.PagoInsuficienteException;
@@ -8,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
         // Creamos una máquina expendedora con  4 unidades de cada producto
-        Expendedor exp = new Expendedor(0);
+        Expendedor exp = new Expendedor(4);
 
         // Creamos una moneda de 1000 pesos.
         Moneda mon = new Moneda1000();
@@ -28,7 +29,7 @@ public class Main {
             // Podemos consultar tambien por el sabor del producto que compró
             System.out.println( com.queConsumiste() );
 
-        } catch (PagoIncorrectoException e) {
+        } catch (IdProductoNoExiste | PagoIncorrectoException e) {
             System.err.println(e.getMessage());
         }
     }

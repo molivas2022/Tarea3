@@ -1,4 +1,5 @@
 package org.main;
+import org.main.customexception.IdProductoNoExiste;
 import org.main.customexception.NoHayProductoException;
 import org.main.customexception.PagoIncorrectoException;
 import org.main.customexception.PagoInsuficienteException;
@@ -9,7 +10,8 @@ public class Comprador {
     private String sabor;
     private int vuelto;
     public Comprador(Moneda moneda, int id, Expendedor expendedor)
-            throws PagoIncorrectoException
+            throws PagoIncorrectoException,
+            IdProductoNoExiste
     {
         try {
             Producto compra = expendedor.comprarProducto(moneda, id);
