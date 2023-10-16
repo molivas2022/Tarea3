@@ -32,8 +32,9 @@ public class Expendedor {
     }
 
     public Producto comprarProducto(Moneda moneda, int id)
-            throws  PagoInsuficienteException,
-                    PagoIncorrectoException
+            throws PagoInsuficienteException,
+            PagoIncorrectoException,
+            NoHayProductoException
     {
         if (moneda == null) {
             throw new PagoIncorrectoException("No se ha hecho ingreso de una moneda.");
@@ -58,7 +59,7 @@ public class Expendedor {
             precio = Catalogo.SUPER8.getPrecio();
             dep = depSuper8;
         } else {
-            //Podriamos arrojar una excepción
+            // TODO: Crear una ProductoIdNoExiste
             depVuelto.addObjeto(moneda);
             return null;
         }
@@ -68,11 +69,10 @@ public class Expendedor {
             throw new PagoInsuficienteException("El valor de la moneda es menor que del producto solicitado.");
         }
 
-        Producto compra = (Producto)dep.getObjeto();
+        Producto compra = (Producto) dep.getObjeto();
         if (compra == null) {
-            // TODO: NoHayProductoException
             depVuelto.addObjeto(moneda);
-            return null;
+            throw new NoHayProductoException("No quedan productos del solicitado.");
         }
 
         for (int i = 0; i < (moneda.getValor() - precio); i += 100) {
@@ -83,5 +83,4 @@ public class Expendedor {
     public Moneda getVuelto() {
         return depVuelto.getObjeto();
     }
-
 }
