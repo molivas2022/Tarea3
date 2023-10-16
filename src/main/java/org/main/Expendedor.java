@@ -78,10 +78,6 @@ public class Expendedor {
         return compra;
     }
     public Moneda getVuelto() {
-        try {
-            return depVuelto.getObjeto();
-        } catch (NoHayProductoException e) {
-            return null;
-        }
+        return depVuelto.getObjeto();
     }
 }
