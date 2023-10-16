@@ -1,4 +1,6 @@
 package org.main;
+import org.main.CustomException.PagoIncorrectoException;
+import org.main.CustomException.PagoInsuficienteException;
 import org.main.Expendedor;
 import org.main.Moneda.*;
 import org.main.Producto.Producto;
@@ -6,7 +8,10 @@ import org.main.Producto.Producto;
 public class Comprador {
     private String sabor;
     private int vuelto;
-    public Comprador(Moneda moneda, int id, Expendedor expendedor) {
+    public Comprador(Moneda moneda, int id, Expendedor expendedor)
+            throws PagoInsuficienteException,
+            PagoIncorrectoException
+    {
         sabor = "nada";
         Producto compra;
         try {

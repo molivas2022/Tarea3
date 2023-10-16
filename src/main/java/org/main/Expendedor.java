@@ -1,6 +1,7 @@
 package org.main;
 import org.main.Moneda.*;
 import org.main.Producto.*;
+import org.main.CustomException.*;
 
 public class Expendedor {
     private Deposito<CocaCola> depCocaCola;
@@ -30,10 +31,12 @@ public class Expendedor {
         }
     }
 
-    public Producto comprarProducto(Moneda moneda, int id) {
+    public Producto comprarProducto(Moneda moneda, int id)
+            throws  PagoInsuficienteException,
+                    PagoIncorrectoException
+    {
         if (moneda == null) {
-            // TODO: PagoIncorrectoException
-            return null;
+            throw new PagoIncorrectoException("No se ha hecho ingreso de una moneda.");
         }
 
         int precio;
@@ -61,9 +64,8 @@ public class Expendedor {
         }
 
         if (moneda.getValor() < precio) {
-            // TODO: PagoInsuficienteException
             depVuelto.addObjeto(moneda);
-            return null;
+            throw new PagoInsuficienteException("El valor de la moneda es menor que del producto solicitado.");
         }
 
         Producto compra = (Producto) dep.getObjeto();

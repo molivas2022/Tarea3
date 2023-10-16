@@ -1,6 +1,10 @@
 package org.main;
+import org.main.CustomException.PagoIncorrectoException;
+import org.main.CustomException.PagoInsuficienteException;
 import org.main.Moneda.*;
 import org.main.Producto.*;
+
+import java.sql.SQLOutput;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,11 +16,12 @@ public class Main {
         Moneda mon = new Moneda1000();
         System.out.println( mon.toString() ); // Imprimimos la información de la moneda
 
-
+        Comprador com = null;
         try {
             // Creamos un comprador, el cual va a intentar comprar un Snickers con la
             // moneda de 1000 pesos que le entregaremos
-            Comprador com = new Comprador(mon, Catalogo.SNICKERS.getId(), exp);
+            com = new Comprador(mon, Catalogo.SNICKERS.getId(), exp);
+
             // Notemos que debería tener un vuelto de 200 pesos. Podemos consultarselo
             System.out.println( com.getVuelto() );
 
@@ -24,6 +29,13 @@ public class Main {
             System.out.println( com.queConsumiste() );
         } catch(NoHayProductoException e) {
             System.err.println("No quedan productos.");
+        } catch (PagoIncorrectoException pie) {
+            System.out.println(pie.getMessage());
+        } catch (PagoInsuficienteException pie) {
+            System.out.println(pie.getMessage());
+
+            // Si la moneda fuera insuficiente, la moneda sería devuelta por el expendedor como vuelto
+            System.out.println( exp.getVuelto().toString() );
         }
 
     }
