@@ -1,9 +1,8 @@
 package org.main;
 import org.main.customexception.IdProductoNoExiste;
-import org.main.customexception.NoHayProductoException;
 import org.main.customexception.PagoIncorrectoException;
-import org.main.customexception.PagoInsuficienteException;
 import org.main.moneda.*;
+// TODO: Actualizar UML con métodos nuevos, etc.
 
 public class Main {
     public static void main(String[] args) {

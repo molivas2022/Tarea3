@@ -16,13 +16,13 @@ public class Comprador {
         try {
             Producto compra = expendedor.comprarProducto(moneda, id);
             sabor = compra.consumir();
+            vuelto = 0;
+            extraerVuelto(expendedor);
         } catch (PagoInsuficienteException  | NoHayProductoException e) {
             sabor = "nada";
-            System.err.println(e.getMessage());
-        } finally {
             vuelto = 0;
-            /* El comprador extrae el vuelto del expendedor */
             extraerVuelto(expendedor);
+            System.err.println(e.getMessage());
         }
     }
     public String queConsumiste() {
