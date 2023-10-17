@@ -15,9 +15,8 @@ public class Deposito<T> {
             return null;
         } else {
             /*
-             * El depósito de una máquina expendedora debería ser LIFO, asi que removemos el objeto más vieja, la
-             * del índice 0. Como se quiere que depósito sea lo más polimórfico posible, se podrían tener dos metodos,
-             * uno LIFO y otro FIFO, que se usen dependiendo de la necesidad del caller.
+             * El depósito de una máquina expendedora debería ser FIFO, asi que removemos el objeto más vieja, la
+             * del índice 0.
              */
             return objetos.remove(0);
         }
