@@ -1,8 +1,10 @@
-package org.main;
+package org.main.expendedor;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.main.Catalogo;
+import org.main.Expendedor;
 import org.main.moneda.*;
 import org.main.producto.*;
 import org.main.customexception.*;
@@ -15,6 +17,21 @@ class ExpendedorTest {
     @BeforeEach
     void testSetup() {
         e = new Expendedor(1);
+        /* Dejamos el catálogo en este estado. */
+        Catalogo.COCACOLA.setPrecio(1200);
+        Catalogo.COCACOLA.setId(1);
+
+        Catalogo.FANTA.setPrecio(1200);
+        Catalogo.FANTA.setId(2);
+
+        Catalogo.SPRITE.setPrecio(1200);
+        Catalogo.SPRITE.setId(3);
+
+        Catalogo.SNICKERS.setPrecio(800);
+        Catalogo.SNICKERS.setId(4);
+
+        Catalogo.SUPER8.setPrecio(800);
+        Catalogo.SUPER8.setId(5);
     }
     @Test
     void testComprarBebidaExitosamente() {
