@@ -1,7 +1,8 @@
-package org.main;
+package org.main.expendedor;
 import org.main.moneda.*;
 import org.main.producto.*;
 import org.main.customexception.*;
+import org.main.comprador.*;
 
 public class Expendedor {
     private Deposito<CocaCola> depCocaCola;

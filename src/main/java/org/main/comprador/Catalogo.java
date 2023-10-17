@@ -1,4 +1,6 @@
-package org.main;
+package org.main.comprador;
+
+import org.main.expendedor.Expendedor;
 
 /**
  * Enumeracion que describe la informacion relevante de los productos que maneja <code>Expendedor</code>.

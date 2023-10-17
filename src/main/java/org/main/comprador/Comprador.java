@@ -1,10 +1,11 @@
-package org.main;
+package org.main.comprador;
 import org.main.customexception.IdProductoNoExisteException;
 import org.main.customexception.NoHayProductoException;
 import org.main.customexception.PagoIncorrectoException;
 import org.main.customexception.PagoInsuficienteException;
+import org.main.expendedor.Expendedor;
 import org.main.moneda.*;
-import org.main.producto.Producto;
+import org.main.comprador.Producto;
 
 public class Comprador {
     private String sabor;

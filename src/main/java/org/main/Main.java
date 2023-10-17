@@ -1,6 +1,8 @@
 package org.main;
+import org.main.comprador.Comprador;
 import org.main.customexception.IdProductoNoExisteException;
 import org.main.customexception.PagoIncorrectoException;
+import org.main.expendedor.Expendedor;
 import org.main.moneda.*;
 // TODO: Actualizar UML con métodos nuevos, etc.
 
