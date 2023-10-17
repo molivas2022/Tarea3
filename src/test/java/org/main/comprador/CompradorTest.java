@@ -7,6 +7,7 @@ import org.main.customexception.NoHayProductoException;
 import org.main.customexception.PagoIncorrectoException;
 import org.main.customexception.PagoInsuficienteException;
 import org.main.moneda.*;
+import org.main.productos.Catalogo;
 
 import java.util.ArrayList;
 

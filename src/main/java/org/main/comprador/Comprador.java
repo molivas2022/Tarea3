@@ -5,7 +5,7 @@ import org.main.customexception.PagoIncorrectoException;
 import org.main.customexception.PagoInsuficienteException;
 import org.main.expendedor.Expendedor;
 import org.main.moneda.*;
-import org.main.comprador.Producto;
+import org.main.productos.Producto;
 
 public class Comprador {
     private String sabor;

@@ -1,4 +1,4 @@
-package org.main.comprador;
+package org.main.productos;
 
 public class Snickers extends Dulce {
     public Snickers(String serie) {

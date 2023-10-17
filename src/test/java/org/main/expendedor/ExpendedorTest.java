@@ -2,10 +2,9 @@ package org.main.expendedor;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.main.comprador.Catalogo;
+import org.main.productos.*;
 import org.main.moneda.*;
 import org.main.customexception.*;
-import org.main.comprador.*;
 import org.opentest4j.AssertionFailedError;
 
 import static org.junit.jupiter.api.Assertions.*;

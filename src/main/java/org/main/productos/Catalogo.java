@@ -1,5 +1,6 @@
-package org.main.comprador;
+package org.main.productos;
 
+import org.main.comprador.Comprador;
 import org.main.expendedor.Expendedor;
 
 /**
