@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.main"},{"l":"org.main.comprador"},{"l":"org.main.customexception"},{"l":"org.main.expendedor"},{"l":"org.main.moneda"},{"l":"org.main.productos"}];updateSearchResults();

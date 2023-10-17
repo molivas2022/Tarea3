@@ -1,14 +1,13 @@
 package org.main.comprador;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.main.Catalogo;
-import org.main.Comprador;
-import org.main.Expendedor;
+import org.main.expendedor.Expendedor;
 import org.main.customexception.IdProductoNoExisteException;
 import org.main.customexception.NoHayProductoException;
 import org.main.customexception.PagoIncorrectoException;
 import org.main.customexception.PagoInsuficienteException;
 import org.main.moneda.*;
+import org.main.productos.Catalogo;
 
 import java.util.ArrayList;
 

@@ -1,9 +1,11 @@
 package org.main.deposito;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.main.Deposito;
+import org.main.expendedor.Deposito;
 import org.main.moneda.*;
-import org.main.producto.*;
+import org.main.productos.CocaCola;
+import org.main.productos.Producto;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class DepositoTest {
