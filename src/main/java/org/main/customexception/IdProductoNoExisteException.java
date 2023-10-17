@@ -1,9 +1,11 @@
 package org.main.customexception;
 
+import org.main.expendedor.Expendedor;
+
 /**
  * Excepcion que ocurre cuando se intenta hacer una compra en expendedor
  * con la id invalida, no asociada a ningun producto.
- * @see org.main.Expendedor
+ * @see Expendedor
  * @author Askorin
  * @author molivas2022
  * @version 1.0.0 17-10-2023
