@@ -5,6 +5,7 @@ hide empty fields
 class Comprador {
   {field} - sabor : String
   {field} - vuelto : int
+  {method} - extraerVuelto(Expendedor) : void
   {method} + queConsumiste() : String
   {method} + cuantoVuelto() : int
 }
