@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MonedaTest {
-    private Moneda m100_1, m100_2, m500_1;
-    @BeforeEach
-    void testSetup() {
+    private static Moneda m100_1, m100_2, m500_1;
+    @BeforeAll
+    static void testSetup() {
         m100_1 = new Moneda100();
         m100_2 = new Moneda100();
         m500_1 = new Moneda500();
@@ -27,7 +27,7 @@ class MonedaTest {
         assertEquals(500, m500_1.getValor());
     }
     @Test
-    void testDosMonedasDe100TienenDistintaSerie() {
+    void testDosMonedasDe100TienenDiferenteSerie() {
         assertNotEquals(m100_1.getSerie(), m100_2.getSerie());
     }
 }
