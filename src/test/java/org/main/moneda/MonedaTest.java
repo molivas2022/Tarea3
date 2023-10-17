@@ -7,27 +7,34 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MonedaTest {
-    private static Moneda m100_1, m100_2, m500_1;
-    @BeforeAll
-    static void testSetup() {
-        m100_1 = new Moneda100();
-        m100_2 = new Moneda100();
-        m500_1 = new Moneda500();
-    }
     @Test
     void testMonedasDelMismoValor() {
-        assertEquals(1, m100_1.compareTo(m100_2));
+        assertEquals(1, (new Moneda100()).compareTo(new Moneda100()));
+        assertEquals(1, (new Moneda500()).compareTo(new Moneda500()));
+        assertEquals(1, (new Moneda1000()).compareTo(new Moneda1000()));
+        assertEquals(1, (new Moneda1500()).compareTo(new Moneda1500()));
     }
     @Test
     void testMonedasDeDistintoValor() {
-        assertNotEquals(1, m100_1.compareTo(m500_1));
+        assertNotEquals(1, (new Moneda100()).compareTo(new Moneda500()));
+        assertNotEquals(1, (new Moneda100()).compareTo(new Moneda1000()));
+        assertNotEquals(1, (new Moneda100()).compareTo(new Moneda1500()));
     }
     @Test
-    void testRecibirValorDeMonedaDe500() {
-        assertEquals(500, m500_1.getValor());
+    void testRecibirValorDeMoneda() {
+        assertEquals(100, (new Moneda100()).getValor());
+        assertEquals(500, (new Moneda500()).getValor());
+        assertEquals(1000, (new Moneda1000()).getValor());
+        assertEquals(1500, (new Moneda1500()).getValor());
     }
     @Test
-    void testDosMonedasDe100TienenDiferenteSerie() {
-        assertNotEquals(m100_1.getSerie(), m100_2.getSerie());
+    void testDosMonedasTienenDiferenteSerie() {
+        // Mismo valor
+        assertNotEquals((new Moneda100()).getSerie(), (new Moneda100()).getSerie());
+        assertNotEquals((new Moneda500()).getSerie(), (new Moneda500()).getSerie());
+
+        // Distinto valor
+        assertNotEquals((new Moneda100()).getSerie(), (new Moneda500()).getSerie());
+        assertNotEquals((new Moneda1000()).getSerie(), (new Moneda1500()).getSerie());
     }
 }

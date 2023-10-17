@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.main.moneda.*;
 import org.main.producto.*;
 import org.main.customexception.*;
+import org.opentest4j.AssertionFailedError;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -83,6 +84,19 @@ class ExpendedorTest {
     void testCompraFallidaPorProductoInvalido() {
         assertThrows(IdProductoNoExisteException.class, () -> {
             Producto p = e.comprarProducto(new Moneda1500(), -1);
+        });
+    }
+    @Test
+    void testComprasReiteradas() {
+        e = new Expendedor(3);
+        testComprarBebidaExitosamente(); testComprarDulceExitosamente();
+        testComprarBebidaExitosamente(); testComprarDulceExitosamente();
+        testComprarBebidaExitosamente(); testComprarDulceExitosamente();
+        assertThrows(AssertionFailedError.class, () -> {
+            testComprarBebidaExitosamente();
+        });
+        assertThrows(AssertionFailedError.class, () -> {
+            testComprarDulceExitosamente();
         });
     }
 }
