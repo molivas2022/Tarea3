@@ -1,4 +1,5 @@
 package org.main.expendedor;
+import org.main.comprador.*;
 import org.main.moneda.*;
 import org.main.productos.*;
 import org.main.customexception.*;
