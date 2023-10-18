@@ -5,6 +5,11 @@ Segunda tarea del curso de Programación II.
 |---------------------------------|------------|
 | Matías Rodrigo Olivas Henríquez | 2022421061 |
 | Antonio Ignacio Skorin García   | 2022402164 |
+
+------------------------------------------------
+
+## <a href = "https://molivas2022.github.io/Tarea2/">Documentación</a>
+
 ------------------------------------------------
 
 ## UML de la Aplicación
