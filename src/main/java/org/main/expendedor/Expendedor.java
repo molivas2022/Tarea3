@@ -3,14 +3,37 @@ import org.main.moneda.*;
 import org.main.productos.*;
 import org.main.customexception.*;
 
+/**
+ * Clase que modela una maquina expendedora.
+ * Su funcion principal es modelar la compra de un producto deseado
+ * a cambio de una moneda que cubra su valor.
+ * @see Comprador
+ * @see Moneda
+ * @see Deposito
+ * @see Producto
+ * @author Askorin
+ * @author molivas2022
+ * @version 1.0.0 17-10-2023
+ */
 public class Expendedor {
+    /**Deposito donde se almacenan las unidades de la bebida CocaCola.*/
     private Deposito<CocaCola> depCocaCola;
+    /**Deposito donde se almacenan las unidades de la bebida Sprite.*/
     private Deposito<Sprite> depSprite;
+    /**Deposito donde se almacenan las unidades de la bebida Fanta.*/
     private Deposito<Fanta> depFanta;
+    /**Deposito donde se almacenan las unidades del dulce Snickers.*/
     private Deposito<Snickers> depSnickers;
+    /**Deposito donde se almacenan las unidades del dulce Super 8.*/
     private Deposito<Super8> depSuper8;
+    /**Deposito donde se almacena el vuelto en monedas de 100 pesos.*/
     private Deposito<Moneda> depVuelto;
 
+    /**
+     * Constructor unico de Expendedor, recibe el numero de productos
+     * con que debe rellenar sus depositos.
+     * @param cantidadProductos Con cuantas unidades rellena cada deposito de los productos que maneja.
+     */
     public Expendedor(int cantidadProductos) {
         depCocaCola = new Deposito<>();
         depSprite = new Deposito<>();
@@ -31,6 +54,16 @@ public class Expendedor {
         }
     }
 
+    /**
+     * Efectua la compra de un producto a cambio de una moneda.
+     * @param moneda Moneda con cual se quiere comprar el producto.
+     * @param id Identificador numerico del producto solicitado.
+     * @return Devuelve una unidadd del producto deseado si la compra es exitosa.
+     * @throws PagoInsuficienteException    En caso de que la moneda no cubra el valor del producto.
+     * @throws PagoIncorrectoException      En caso de que la moneda ingresada sea invalida (<code>null</code>).
+     * @throws NoHayProductoException       En caso de que no queden unidades del producto solicitado.
+     * @throws IdProductoNoExisteException  En caso de que el identificador numerico sea invalido.
+     */
     public Producto comprarProducto(Moneda moneda, int id)
             throws PagoInsuficienteException,
             PagoIncorrectoException,
@@ -80,6 +113,11 @@ public class Expendedor {
         }
         return compra;
     }
+
+    /**
+     * Permite extraer el vuelto de la compra moneda por moneda.
+     * @return Devuelve una moneda de 100 pesos si falta por retirar vuelto, en caso contrario, devuelve <code>null</code>.
+     */
     public Moneda getVuelto() {
         return depVuelto.getObjeto();
     }
