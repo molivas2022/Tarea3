@@ -10,7 +10,7 @@ package org.main.moneda;
  * @author molivas2022
  * @version 1.0.0 17-10-2023
  */
-abstract public class Moneda implements Comparable {
+abstract public class Moneda implements Comparable<Moneda> {
     /**
      * Permite acceder a la serie de la moneda, que corresponde a su direccion de memoria.
      * @return La serie de la moneda en formato <code>String</code>.
@@ -26,19 +26,23 @@ abstract public class Moneda implements Comparable {
     abstract public int getValor();
 
     /**
-     * Permite determinar si dos monedas son semejantes, compartiendo el mismo valor.
-     * @param o El objeto que sea desea verificar semejanza.
-     * @return Devuelve <code>1</code> en caso de ser una moneda del mismo valor.
-     *         En caso contrario, devuelve <code>0</code>.
+     * Permite ordenar dos monedas, segun su valor.
+     * @param m La moneda con cual se desea comparar.
+     * @return Devuelve <code>1</code> si la moneda ingresada es de menor valor,
+     * <code>0</code> si son del mismo valor, <code>-1</code> si es de mayor valor.
      */
     @Override
-    public int compareTo(Object o) {
-        if (o instanceof Moneda) {
-            if (((Moneda)o).getValor() == this.getValor()) {
-                return 1;
-            }
+    public int compareTo(Moneda m) {
+        if (m == null) {
+            throw new NullPointerException("Se esta haciendo la comparación con una referencia nula.");
         }
-        return 0;
+        else if (this.getValor() > m.getValor()) {
+            return 1;
+        }
+        else if (this.getValor() == m.getValor()) {
+            return 0;
+        }
+        return -1;
     }
 
     /**
