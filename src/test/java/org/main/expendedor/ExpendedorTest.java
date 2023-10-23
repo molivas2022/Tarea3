@@ -2,8 +2,13 @@ package org.main.expendedor;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.main.modelos.expendedor.Expendedor;
+import org.main.modelos.moneda.Moneda;
+import org.main.modelos.moneda.Moneda100;
+import org.main.modelos.moneda.Moneda1000;
+import org.main.modelos.moneda.Moneda1500;
+import org.main.modelos.productos.*;
 import org.main.productos.*;
-import org.main.moneda.*;
 import org.main.customexception.*;
 import org.opentest4j.AssertionFailedError;
 

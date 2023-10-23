@@ -1,4 +1,4 @@
-package org.main.moneda;
+package org.main.modelos.moneda;
 
 /**
  * Una clase que modela una moneda de 500 pesos.

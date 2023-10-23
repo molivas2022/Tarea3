@@ -1,6 +1,6 @@
 package org.main.customexception;
 
-import org.main.expendedor.Expendedor;
+import org.main.modelos.expendedor.Expendedor;
 
 /**
  * Excepcion que ocurre cuando se intenta hacer una compra en expendedor
