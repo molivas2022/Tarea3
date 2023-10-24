@@ -9,28 +9,36 @@ import org.main.modelos.productos.Sprite;
 
 import javax.swing.JPanel;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class PanelExpendedor extends JPanel {
     private Expendedor exp;
-    public PanelExpendedor() {
+    private ArrayList<PanelDeposito<?>> paneles;
+    public PanelExpendedor(Expendedor exp) {
         super();
         setLayout(new GridLayout(3,1));
         setPreferredSize(new Dimension(1200, 1200));
 
-        exp = new Expendedor(5);
 
         // Crear paneles deposito
         Deposito<CocaCola> cocaDep = exp.getDepCocaCola();
-        PanelDeposito<CocaCola> panelCoca = new PanelDeposito<CocaCola>(CocaCola.class, cocaDep, 64, 120);
+        PanelDeposito<CocaCola> panelCoca = new PanelDeposito<>(CocaCola.class, cocaDep, 64, 120);
         Deposito<Sprite> spriteDep = exp.getDepSprite();
-        PanelDeposito<Sprite> panelSprite = new PanelDeposito<Sprite>(Sprite.class, spriteDep, 64, 64);
+        PanelDeposito<Sprite> panelSprite = new PanelDeposito<>(Sprite.class, spriteDep, 64, 64);
 
-        Deposito<Moneda> monedaDep = new Deposito<Moneda>();
+        paneles = new ArrayList<>();
+
+        Deposito<Moneda> monedaDep = new Deposito<>();
         monedaDep.addObjeto(new Moneda100()); monedaDep.addObjeto(new Moneda500());
-        PanelDeposito<Moneda> panelMoneda = new PanelDeposito<Moneda>(Moneda.class, monedaDep, 64, 64);
+        PanelDeposito<Moneda> panelMoneda = new PanelDeposito<>(Moneda.class, monedaDep, 64, 64);
 
-        add(panelCoca, 0);
-        add(panelSprite, 1);
-        add(panelMoneda, 2);
+        // TODO: Hacer algo con el catálogo de tal manera que haga paneles de depósito para todos los productos.
+        paneles.add(panelCoca);
+        paneles.add(panelSprite);
+        paneles.add(panelMoneda);
+
+        for (JPanel panel : paneles) {
+            add(panel);
+        }
     }
 }

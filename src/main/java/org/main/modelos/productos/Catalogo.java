@@ -13,11 +13,11 @@ import org.main.modelos.expendedor.Expendedor;
  */
 public enum Catalogo {
     /**Constante que describe el producto bebida CocaCola*/
-    COCACOLA(1200, 1),
+    COCACOLA(1000, 1),
     /**Constante que describe el producto bebida Sprite*/
-    SPRITE(1200, 2),
+    SPRITE(1000, 2),
     /**Constante que describe el producto bebida Fanta*/
-    FANTA(1200, 3),
+    FANTA(1000, 3),
     /**Constante que describe el producto dulce Snickers*/
     SNICKERS(800, 4),
     /**Constante que describe el producto dulce Super8*/
