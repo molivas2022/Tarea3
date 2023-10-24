@@ -8,7 +8,8 @@ public class PanelMoneda extends JPanel {
     private Moneda moneda;
     private String truncatedSerie() {
         String serie = moneda.getSerie();
-        return serie.substring( serie.length() - 8 );
+        String[] split = serie.split("@");
+        return split[split.length - 1];
     }
     private String valorAsString() {
         return Integer.toString(moneda.getValor());
