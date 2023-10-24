@@ -1,9 +1,13 @@
 package org.main.modelos.expendedor;
 import org.main.modelos.comprador.Comprador;
+
+import org.main.customexception.IdProductoNoExisteException;
+import org.main.customexception.NoHayProductoException;
+import org.main.customexception.PagoIncorrectoException;
+import org.main.customexception.PagoInsuficienteException;
 import org.main.modelos.moneda.Moneda;
 import org.main.modelos.moneda.Moneda100;
 import org.main.modelos.productos.*;
-import org.main.customexception.*;
 
 /**
  * Clase que modela una maquina expendedora.

@@ -1,12 +1,15 @@
 package org.main.comprador;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.main.modelos.comprador.Comprador;
+<<<<<<< HEAD
 import org.main.modelos.expendedor.Expendedor;
 import org.main.customexception.IdProductoNoExisteException;
 import org.main.customexception.NoHayProductoException;
 import org.main.customexception.PagoIncorrectoException;
 import org.main.customexception.PagoInsuficienteException;
+import org.main.modelos.comprador.Comprador;
+=======
+>>>>>>> main
 import org.main.modelos.moneda.*;
 import org.main.modelos.productos.Catalogo;
 
