@@ -10,9 +10,9 @@ public class PanelExpendedor extends JPanel {
     private Expendedor exp;
     PanelExpendedor() {
         super();
-        setLayout(new FlowLayout());
+        setLayout(new FlowLayout(FlowLayout.LEFT));
         setPreferredSize(new Dimension(1200, 1200));
-        exp = new Expendedor(10);
+        exp = new Expendedor(5);
         PanelDepositoProducto<CocaCola> panelDepCoca = new PanelDepositoProducto<>(exp.getDepCocaCola());
         PanelDepositoProducto<Sprite> panelDepSprite = new PanelDepositoProducto<>(exp.getDepSprite());
         add(panelDepCoca);
