@@ -5,15 +5,13 @@ import java.awt.*;
 public class PanelPrincipal extends JPanel {
     // private PanelComprador pCom;
     private PanelExpendedor pExp;
+    private PanelBotones pBot;
     public PanelPrincipal() {
+        super();
         pExp = new PanelExpendedor();
-        setLayout(new BorderLayout());
-        this.add(pExp);
+        pBot = new PanelBotones();
+        setLayout(new GridLayout(1, 0));
+        add(pExp);
+        add(pBot);
     }
-
-    public void paint (Graphics g) {
-        super.paint(g);
-        pExp.paint(g);
-    }
-
 }
