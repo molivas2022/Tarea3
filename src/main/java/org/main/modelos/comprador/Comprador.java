@@ -1,8 +1,8 @@
 package org.main.modelos.comprador;
-import org.main.modelos.customexception.IdProductoNoExisteException;
-import org.main.modelos.customexception.NoHayProductoException;
-import org.main.modelos.customexception.PagoIncorrectoException;
-import org.main.modelos.customexception.PagoInsuficienteException;
+import org.main.customexception.IdProductoNoExisteException;
+import org.main.customexception.NoHayProductoException;
+import org.main.customexception.PagoIncorrectoException;
+import org.main.customexception.PagoInsuficienteException;
 import org.main.modelos.expendedor.Expendedor;
 import org.main.modelos.moneda.Moneda;
 import org.main.modelos.productos.Producto;

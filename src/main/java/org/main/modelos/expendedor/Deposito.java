@@ -40,10 +40,19 @@ public class Deposito<T> {
             return objetos.remove(0);
         }
     }
+<<<<<<< HEAD
     public int cuantosObjetos() {
         return objetos.size();
     }
     public T peekObjeto(int i) {
         return objetos.get(i);
+=======
+    public T peekObjeto(int i) {
+        if (i >= objetos.size() || i < 0) {
+            return null;
+        } else {
+            return objetos.get(i);
+        }
+>>>>>>> main
     }
 }

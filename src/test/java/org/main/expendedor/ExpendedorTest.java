@@ -2,10 +2,13 @@ package org.main.expendedor;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.main.modelos.customexception.IdProductoNoExisteException;
-import org.main.modelos.customexception.NoHayProductoException;
-import org.main.modelos.customexception.PagoIncorrectoException;
-import org.main.modelos.customexception.PagoInsuficienteException;
+<<<<<<< HEAD
+import org.main.customexception.IdProductoNoExisteException;
+import org.main.customexception.NoHayProductoException;
+import org.main.customexception.PagoIncorrectoException;
+import org.main.customexception.PagoInsuficienteException;
+=======
+>>>>>>> main
 import org.main.modelos.expendedor.Expendedor;
 import org.main.modelos.moneda.Moneda;
 import org.main.modelos.moneda.Moneda100;
@@ -13,7 +16,6 @@ import org.main.modelos.moneda.Moneda1000;
 import org.main.modelos.moneda.Moneda1500;
 import org.main.modelos.productos.*;
 import org.main.productos.*;
-import org.main.customexception.*;
 import org.opentest4j.AssertionFailedError;
 
 import static org.junit.jupiter.api.Assertions.*;

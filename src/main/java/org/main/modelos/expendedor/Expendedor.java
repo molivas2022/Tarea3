@@ -1,9 +1,10 @@
 package org.main.modelos.expendedor;
 import org.main.modelos.comprador.Comprador;
-import org.main.modelos.customexception.IdProductoNoExisteException;
-import org.main.modelos.customexception.NoHayProductoException;
-import org.main.modelos.customexception.PagoIncorrectoException;
-import org.main.modelos.customexception.PagoInsuficienteException;
+
+import org.main.customexception.IdProductoNoExisteException;
+import org.main.customexception.NoHayProductoException;
+import org.main.customexception.PagoIncorrectoException;
+import org.main.customexception.PagoInsuficienteException;
 import org.main.modelos.moneda.Moneda;
 import org.main.modelos.moneda.Moneda100;
 import org.main.modelos.productos.*;
@@ -22,20 +23,21 @@ import org.main.modelos.productos.*;
  */
 public class Expendedor {
     /**Deposito donde se almacenan las unidades de la bebida CocaCola.*/
-    private Deposito<CocaCola> depCocaCola;
+    final private Deposito<CocaCola> depCocaCola;
     /**Deposito donde se almacenan las unidades de la bebida Sprite.*/
-    private Deposito<Sprite> depSprite;
+    final private Deposito<Sprite> depSprite;
     /**Deposito donde se almacenan las unidades de la bebida Fanta.*/
-    private Deposito<Fanta> depFanta;
+    final private Deposito<Fanta> depFanta;
     /**Deposito donde se almacenan las unidades del dulce Snickers.*/
-    private Deposito<Snickers> depSnickers;
+    final private Deposito<Snickers> depSnickers;
     /**Deposito donde se almacenan las unidades del dulce Super 8.*/
-    private Deposito<Super8> depSuper8;
+    final private Deposito<Super8> depSuper8;
     /**Deposito donde se almacena el vuelto en monedas de 100 pesos.*/
-    private Deposito<Moneda> depVuelto;
+    final private Deposito<Moneda> depVuelto;
 
     /**
-     * Constructor unico de Expendedor, recibe el numero de productos
+     *
+     *  Constructor unico de Expendedor, recibe el numero de productos
      * con que debe rellenar sus depositos.
      * @param cantidadProductos Con cuantas unidades rellena cada deposito de los productos que maneja.
      */
@@ -125,5 +127,29 @@ public class Expendedor {
      */
     public Moneda getVuelto() {
         return depVuelto.getObjeto();
+    }
+
+    public Deposito<CocaCola> getDepCocaCola() {
+        return depCocaCola;
+    }
+
+    public Deposito<Sprite> getDepSprite() {
+        return depSprite;
+    }
+
+    public Deposito<Fanta> getDepFanta() {
+        return depFanta;
+    }
+
+    public Deposito<Snickers> getDepSnickers() {
+        return depSnickers;
+    }
+
+    public Deposito<Super8> getDepSuper8() {
+        return depSuper8;
+    }
+
+    public Deposito<Moneda> getDepVuelto() {
+        return depVuelto;
     }
 }

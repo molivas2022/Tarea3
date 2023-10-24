@@ -1,4 +1,4 @@
-package org.main.modelos.customexception;
+package org.main.customexception;
 
 import org.main.modelos.expendedor.Expendedor;
 
