@@ -11,7 +11,7 @@ import java.awt.*;
 public class PanelDeposito<T> extends JPanel {
     private Class<T> type;
     private Deposito<T> deposito;
-    public PanelDeposito(Class<T> type, Deposito<T> deposito) {
+    public PanelDeposito(Class<T> type, Deposito<T> deposito, int width, int height) {
         super();
         this.type = type;
         this.deposito = deposito;
@@ -19,10 +19,10 @@ public class PanelDeposito<T> extends JPanel {
         for (int i = 0; i < deposito.cuantosObjetos(); i++) {
             JPanel panel = null;
             if (type == Moneda.class) {
-                panel = new PanelMoneda((Moneda)deposito.peekObjeto(i), 64, 64);
+                panel = new PanelMoneda((Moneda)deposito.peekObjeto(i), width, height);
                 add(panel);
             } else if ( Producto.class.isAssignableFrom( type ) ) {
-                JLabel label = new PanelProducto((Producto) deposito.peekObjeto(i), 64, 64);
+                JLabel label = new PanelProducto((Producto) deposito.peekObjeto(i), width, height);
                 add(label);
             }
         }
