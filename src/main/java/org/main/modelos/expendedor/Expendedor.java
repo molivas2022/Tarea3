@@ -1,4 +1,5 @@
 package org.main.modelos.expendedor;
+import org.main.Observador;
 import org.main.modelos.comprador.Comprador;
 
 import org.main.customexception.IdProductoNoExisteException;
@@ -35,13 +36,18 @@ public class Expendedor {
     /**Deposito donde se almacena el vuelto en monedas de 100 pesos.*/
     final private Deposito<Moneda> depVuelto;
 
+    Observador observador;
+
+
+
     /**
      *
      *  Constructor unico de Expendedor, recibe el numero de productos
      * con que debe rellenar sus depositos.
      * @param cantidadProductos Con cuantas unidades rellena cada deposito de los productos que maneja.
      */
-    public Expendedor(int cantidadProductos) {
+    public Expendedor(int cantidadProductos, Observador observador) {
+        this.observador = observador;
         depCocaCola = new Deposito<>();
         depSprite = new Deposito<>();
         depFanta = new Deposito<>();
@@ -77,6 +83,8 @@ public class Expendedor {
             NoHayProductoException,
             IdProductoNoExisteException
     {
+
+
         if (moneda == null) {
             throw new PagoIncorrectoException("No se ha hecho ingreso de una moneda.");
         }
@@ -118,6 +126,8 @@ public class Expendedor {
         for (int i = 0; i < (moneda.getValor() - precio); i += 100) {
             depVuelto.addObjeto(new Moneda100());
         }
+
+        observador.cambioModelo();
         return compra;
     }
 
