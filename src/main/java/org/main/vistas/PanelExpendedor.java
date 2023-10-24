@@ -20,15 +20,14 @@ public class PanelExpendedor extends JPanel {
         exp = new Expendedor(5);
 
         // Crear paneles deposito
-
         Deposito<CocaCola> cocaDep = exp.getDepCocaCola();
-        PanelDeposito<CocaCola> panelCoca = new PanelDeposito<CocaCola>(CocaCola.class, cocaDep);
+        PanelDeposito<CocaCola> panelCoca = new PanelDeposito<CocaCola>(CocaCola.class, cocaDep, 64, 120);
         Deposito<Sprite> spriteDep = exp.getDepSprite();
-        PanelDeposito<Sprite> panelSprite = new PanelDeposito<Sprite>(Sprite.class, spriteDep);
+        PanelDeposito<Sprite> panelSprite = new PanelDeposito<Sprite>(Sprite.class, spriteDep, 64, 64);
 
         Deposito<Moneda> monedaDep = new Deposito<Moneda>();
         monedaDep.addObjeto(new Moneda100()); monedaDep.addObjeto(new Moneda500());
-        PanelDeposito<Moneda> panelMoneda = new PanelDeposito<Moneda>(Moneda.class, monedaDep);
+        PanelDeposito<Moneda> panelMoneda = new PanelDeposito<Moneda>(Moneda.class, monedaDep, 64, 64);
 
         add(panelCoca, 0);
         add(panelSprite, 1);
