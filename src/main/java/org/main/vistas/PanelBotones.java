@@ -29,7 +29,6 @@ public class PanelBotones extends JPanel {
         }
         add(new JButton("Comprar producto"));
 
-        
         //Parte Antonio
         JButton btnCoca = new JButton("CocaCola");
         add(btnCoca);

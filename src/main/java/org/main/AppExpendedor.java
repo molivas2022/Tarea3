@@ -23,6 +23,11 @@ public class AppExpendedor implements Observador {
 
     public void cambioModelo() {
         /*
+         * TODO: Verdaderamente, no es necesario reconstruir el panel principal entero,
+         *       solo panelExpendedor, o no?
+         */
+
+        /*
          * Se decidió construir un panel nuevo, si bien era posible (y funcionaba)
          * organizar los subpaneles de manera que se pudieran modificar en runtime,
          * esto parece ser más simple y requiere de menos implmenetación / complejidad.
