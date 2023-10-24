@@ -7,7 +7,6 @@ public class AppExpendedor extends JFrame {
 
     AppExpendedor() {
         super("Expendedor");
-        System.out.println("Hola.");
         setContentPane(new PanelPrincipal());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(640, 640);
@@ -17,7 +16,7 @@ public class AppExpendedor extends JFrame {
 
     public static void main(String[] args) {
         /*
-         * Aparentemente es thread-safe correr los códigos den su thread.
+         * Aparentemente es thread-safe correr los códigos en su thread.
          * fuente: www3.ntu.edu.sg/home/ehchua/programming/java/j4a_gui.html#zz-8,
          * capítulo 8.4
          */

@@ -1,6 +1,9 @@
 package org.main.vistas;
+import org.main.modelos.expendedor.Deposito;
 import org.main.modelos.expendedor.Expendedor;
+import org.main.modelos.moneda.Moneda;
 import org.main.modelos.productos.CocaCola;
+import org.main.modelos.productos.Producto;
 import org.main.modelos.productos.Sprite;
 
 import javax.swing.JPanel;
@@ -13,9 +16,11 @@ public class PanelExpendedor extends JPanel {
         setLayout(new FlowLayout(FlowLayout.LEFT));
         setPreferredSize(new Dimension(1200, 1200));
         exp = new Expendedor(5);
-        PanelDepositoProducto<CocaCola> panelDepCoca = new PanelDepositoProducto<>(exp.getDepCocaCola());
-        PanelDepositoProducto<Sprite> panelDepSprite = new PanelDepositoProducto<>(exp.getDepSprite());
-        add(panelDepCoca);
-        add(panelDepSprite);
+        // Crear paneles deposito
+        Deposito<CocaCola> cocaDep = exp.getDepCocaCola();
+        PanelDeposito<CocaCola> panelCoca = new PanelDeposito<CocaCola>(CocaCola.class, cocaDep);
+
+        add(panelCoca);
+
     }
 }
