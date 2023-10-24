@@ -1,4 +1,4 @@
-package org.main.productos;
+package org.main.modelos.productos;
 
 /**
  * Una clase que modela un dulce Super8.
