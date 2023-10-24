@@ -1,9 +1,10 @@
-package org.main;
-import org.main.comprador.Comprador;
-import org.main.customexception.IdProductoNoExisteException;
-import org.main.customexception.PagoIncorrectoException;
-import org.main.expendedor.Expendedor;
-import org.main.moneda.*;
+package org.main.modelo;
+import org.main.modelo.comprador.Comprador;
+import org.main.modelo.customexception.IdProductoNoExisteException;
+import org.main.modelo.customexception.PagoIncorrectoException;
+import org.main.modelo.expendedor.Expendedor;
+import org.main.modelo.moneda.Moneda;
+import org.main.modelo.moneda.Moneda1000;
 // TODO: Actualizar UML con métodos nuevos, etc.
 
 public class Main {
@@ -22,7 +23,7 @@ public class Main {
         try {
             // Creamos un comprador, el cual va a intentar comprar un Snickers con la
             // moneda de 1000 pesos que le entregaremos
-            com = new Comprador(null, 1, exp);
+            com = new Comprador(mon, 1, exp);
 
             // Le consultamos el vuelto al comprador.
             System.out.println( com.getVuelto() );

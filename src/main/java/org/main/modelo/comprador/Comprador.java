@@ -1,14 +1,11 @@
-package org.main.comprador;
-import org.main.customexception.IdProductoNoExisteException;
-import org.main.customexception.NoHayProductoException;
-import org.main.customexception.PagoIncorrectoException;
-import org.main.customexception.PagoInsuficienteException;
-import org.main.expendedor.Expendedor;
-import org.main.moneda.*;
-import org.main.productos.CocaCola;
-import org.main.productos.Fanta;
-import org.main.productos.Producto;
-import org.main.productos.Sprite;
+package org.main.modelo.comprador;
+import org.main.modelo.customexception.IdProductoNoExisteException;
+import org.main.modelo.customexception.NoHayProductoException;
+import org.main.modelo.customexception.PagoIncorrectoException;
+import org.main.modelo.customexception.PagoInsuficienteException;
+import org.main.modelo.expendedor.Expendedor;
+import org.main.modelo.moneda.Moneda;
+import org.main.modelo.productos.Producto;
 
 /**
  * Una clase que entrega las funcionalidades de un Comprador.

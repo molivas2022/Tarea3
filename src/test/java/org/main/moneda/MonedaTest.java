@@ -1,6 +1,10 @@
 package org.main.moneda;
 
 import org.junit.jupiter.api.Test;
+import org.main.modelo.moneda.Moneda100;
+import org.main.modelo.moneda.Moneda1000;
+import org.main.modelo.moneda.Moneda1500;
+import org.main.modelo.moneda.Moneda500;
 
 import static org.junit.jupiter.api.Assertions.*;
 

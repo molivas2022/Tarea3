@@ -1,4 +1,4 @@
-package org.main.moneda;
+package org.main.modelo.moneda;
 
 /**
  * Una clase abstracta que entrega las funcionalidades de una moneda.

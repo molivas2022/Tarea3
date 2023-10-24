@@ -1,10 +1,10 @@
 package org.main.deposito;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.main.expendedor.Deposito;
-import org.main.moneda.*;
-import org.main.productos.CocaCola;
-import org.main.productos.Producto;
+import org.main.modelo.expendedor.Deposito;
+import org.main.modelo.moneda.*;
+import org.main.modelo.productos.CocaCola;
+import org.main.modelo.productos.Producto;
 
 import static org.junit.jupiter.api.Assertions.*;
 

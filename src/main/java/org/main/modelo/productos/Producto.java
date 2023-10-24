@@ -1,4 +1,4 @@
-package org.main.productos;
+package org.main.modelo.productos;
 
 /**
  * Una clase abstracta que entrega las funcionalidades de un producto genérico..

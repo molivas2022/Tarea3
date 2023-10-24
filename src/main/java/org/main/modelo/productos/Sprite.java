@@ -1,4 +1,4 @@
-package org.main.productos;
+package org.main.modelo.productos;
 
 /**
  * Una clase que modela una bebida Sprite.

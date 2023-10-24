@@ -1,7 +1,7 @@
-package org.main.productos;
+package org.main.modelo.productos;
 
-import org.main.comprador.Comprador;
-import org.main.expendedor.Expendedor;
+import org.main.modelo.comprador.Comprador;
+import org.main.modelo.expendedor.Expendedor;
 
 /**
  * Enumeracion que describe la informacion relevante de los productos que maneja <code>Expendedor</code>.

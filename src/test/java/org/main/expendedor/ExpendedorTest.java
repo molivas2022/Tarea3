@@ -2,8 +2,17 @@ package org.main.expendedor;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.main.modelo.customexception.IdProductoNoExisteException;
+import org.main.modelo.customexception.NoHayProductoException;
+import org.main.modelo.customexception.PagoIncorrectoException;
+import org.main.modelo.customexception.PagoInsuficienteException;
+import org.main.modelo.expendedor.Expendedor;
+import org.main.modelo.moneda.Moneda;
+import org.main.modelo.moneda.Moneda100;
+import org.main.modelo.moneda.Moneda1000;
+import org.main.modelo.moneda.Moneda1500;
+import org.main.modelo.productos.*;
 import org.main.productos.*;
-import org.main.moneda.*;
 import org.main.customexception.*;
 import org.opentest4j.AssertionFailedError;
 

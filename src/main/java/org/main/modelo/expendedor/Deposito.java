@@ -1,4 +1,4 @@
-package org.main.expendedor;
+package org.main.modelo.expendedor;
 import java.util.ArrayList;
 
 /**
@@ -39,5 +39,11 @@ public class Deposito<T> {
              */
             return objetos.remove(0);
         }
+    }
+    public int cuantosObjetos() {
+        return objetos.size();
+    }
+    public T peekObjeto(int i) {
+        return objetos.get(i);
     }
 }
