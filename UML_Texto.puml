@@ -2,51 +2,59 @@
 hide empty methods
 hide empty fields
 
-class Comprador {
-  {field} - sabor : String
-  {field} - vuelto : int
-  {method} - extraerVuelto(Expendedor) : void
-  {method} + queConsumiste() : String
-  {method} + cuantoVuelto() : int
-}
-class Expendedor {
-  {field} - precioBebidas : int
-  {field} - precioDulces: int
-  {method} + getVuelto() : Moneda
-  {method} + comprarProducto(Moneda, int) : Producto
-}
-class Deposito<T> {
-    {method} + addObjeto(T) : void 
-    {method} + getObjeto() : T
-}
-abstract Moneda implements Comparable {
-  {method} {abstract} + getValor() : int
-  {method} + getSerie() : String
-}
-abstract Producto {
-    {field} - serie : String
-    {method} {abstract} + consumir() : String
-}
-abstract Bebida {
-}
-abstract Dulce {
-}
-enum Catalogo {
-    {field} - precio : int
-    {field} - id : int
+package "modelos" {
+  class Comprador {
+    {field} - sabor : String
+    {field} - vuelto : int
+    {method} - extraerVuelto(Expendedor) : void
+    {method} + queConsumiste() : String
+    {method} + cuantoVuelto() : int
+  }
+  class Expendedor {
+    {field} - precioBebidas : int
+    {field} - precioDulces: int
+    {method} + getVuelto() : Moneda
+    {method} + comprarProducto(Moneda, int) : Producto
+  }
+  class Deposito<T> {
+      {method} + addObjeto(T) : void 
+      {method} + getObjeto() : T
+  }
+  abstract Moneda implements Comparable {
+    {method} {abstract} + getValor() : int
+    {method} + getSerie() : String
+  }
+  abstract Producto {
+      {field} - serie : String
+      {method} {abstract} + consumir() : String
+  }
+  abstract Bebida {
+  }
+  abstract Dulce {
+  }
+  enum Catalogo {
+      {field} - precio : int
+      {field} - id : int
+  }
+
+  class Moneda1500
+  class Moneda1000
+  class Moneda500
+  class Moneda100
+
+  class CocaCola
+  class Sprite
+  class Fanta
+
+  class Snickers
+  class Super8
 }
 
-class Moneda1500
-class Moneda1000
-class Moneda500
-class Moneda100
-
-class CocaCola
-class Sprite
-class Fanta
-
-class Snickers
-class Super8
+package "vistas" {
+  class PanelPrincipal
+  class PanelExpendedor
+  class PanelComprador
+}
 
 ' Dependencias
 Comprador ..> Expendedor
@@ -57,6 +65,10 @@ Expendedor ..> Catalogo
 
 ' Asociaciones
 Expendedor o-- Deposito
+PanelExpendedor o-- Expendedor
+PanelComprador o-- Comprador
+PanelPrincipal o-- PanelExpendedor
+PanelPrincipal o-- PanelComprador
 
 ' Herencias Producto
 Producto <|-- Bebida

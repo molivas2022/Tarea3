@@ -16,6 +16,11 @@ public class AppExpendedor extends JFrame {
     }
 
     public static void main(String[] args) {
+        /*
+         * Aparentemente es thread-safe correr los códigos den su thread.
+         * fuente: www3.ntu.edu.sg/home/ehchua/programming/java/j4a_gui.html#zz-8,
+         * capítulo 8.4
+         */
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
