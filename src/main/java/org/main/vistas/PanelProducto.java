@@ -8,9 +8,10 @@ import java.io.IOException;
 
 public class PanelProducto extends JLabel {
     Producto producto;
-    PanelProducto(Producto producto) {
+    PanelProducto(Producto producto, int width, int height) {
         super();
-        setPreferredSize(new Dimension(200, 200));
+        setSize(width, height);
+        setPreferredSize(new Dimension(getWidth(), getHeight()));
         this.producto = producto;
         BufferedImage imagen = null;
         try {
@@ -22,7 +23,7 @@ public class PanelProducto extends JLabel {
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
-        Image reImg = imagen.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image reImg = imagen.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
         setIcon(new ImageIcon(reImg));
     }
 }
