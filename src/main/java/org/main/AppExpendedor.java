@@ -1,17 +1,37 @@
 package org.main;
+import org.main.modelos.expendedor.Expendedor;
+import org.main.modelos.moneda.Moneda1000;
+import org.main.modelos.productos.Catalogo;
 import org.main.vistas.PanelPrincipal;
 import javax.swing.*;
 import java.awt.*;
 
-public class AppExpendedor extends JFrame {
+public class AppExpendedor implements Observador {
+
+    final private JFrame frame;
+    final private Expendedor exp = new Expendedor(2, this);
 
     AppExpendedor() {
-        super("Expendedor");
-        setContentPane(new PanelPrincipal());
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(640, 640);
-        pack();
-        setVisible(true);
+        frame = new JFrame("Expendedor");
+        /* Creamos el expendedor (Modelo) y le damos la referencia al Controlador. */
+        frame.setContentPane(new PanelPrincipal(exp));
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(640, 640);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    public void cambioModelo() {
+        /*
+         * Se decidió construir un panel nuevo, si bien era posible (y funcionaba)
+         * organizar los subpaneles de manera que se pudieran modificar en runtime,
+         * esto parece ser más simple y requiere de menos implmenetación / complejidad.
+         */
+        frame.setContentPane(new PanelPrincipal(exp));
+        /* Esto hace cosas, goooglearloooo, validate() y revalidate() ambos funcan. */
+        frame.validate();
+        /* no es necesario un repaint y de hecho ni idea de cuándo podría serlo. */
+        // frame.repaint();
     }
 
     public static void main(String[] args) {
