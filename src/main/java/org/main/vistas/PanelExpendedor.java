@@ -1,4 +1,5 @@
 package org.main.vistas;
+import org.main.Observador;
 import org.main.modelos.expendedor.Deposito;
 import org.main.modelos.expendedor.Expendedor;
 import org.main.modelos.moneda.*;
@@ -8,15 +9,17 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class PanelExpendedor extends JPanel {
+public class PanelExpendedor extends JPanel implements Observador {
     private Expendedor exp;
-    private ArrayList<PanelDeposito<?>> paneles;
     public PanelExpendedor(Expendedor exp) {
         super();
+        this.exp = exp;
         setLayout(new GridLayout(6,1));
         setPreferredSize(new Dimension(1200, 1200));
+        crearAsignarPaneles();
+    }
 
-
+    private void crearAsignarPaneles() {
         // Crear paneles deposito
         //TODO: refactor?
         Deposito<CocaCola> cocaDep = exp.getDepCocaCola();
@@ -24,13 +27,12 @@ public class PanelExpendedor extends JPanel {
         Deposito<Sprite> spriteDep = exp.getDepSprite();
         PanelDeposito<Sprite> panelSprite = new PanelDeposito<>(Sprite.class, spriteDep, 64, 64);
         Deposito<Fanta> fantaDep = exp.getDepFanta();
-        PanelDeposito<Fanta> panelFanta = new PanelDeposito<Fanta>(Fanta.class, fantaDep, 64, 64);
+        PanelDeposito<Fanta> panelFanta = new PanelDeposito<>(Fanta.class, fantaDep, 64, 64);
         Deposito<Snickers> snickersDep = exp.getDepSnickers();
-        PanelDeposito<Snickers> panelSnickers = new PanelDeposito<Snickers>(Snickers.class, snickersDep, 64, 64);
+        PanelDeposito<Snickers> panelSnickers = new PanelDeposito<>(Snickers.class, snickersDep, 64, 64);
         Deposito<Super8> super8Dep = exp.getDepSuper8();
         PanelDeposito<Super8> panelSuper8 = new PanelDeposito<>(Super8.class, super8Dep, 64, 64);
 
-        paneles = new ArrayList<>();
 
         Deposito<Moneda> monedaDep = new Deposito<>();
         monedaDep.addObjeto(new Moneda100());
@@ -40,6 +42,7 @@ public class PanelExpendedor extends JPanel {
         PanelDeposito<Moneda> panelMoneda = new PanelDeposito<>(Moneda.class, monedaDep, 64, 64);
 
         // TODO: Hacer algo con el catálogo de tal manera que haga paneles de depósito para todos los productos.
+        ArrayList<PanelDeposito<?>> paneles = new ArrayList<>();
         paneles.add(panelCoca);
         paneles.add(panelSprite);
         paneles.add(panelFanta);
@@ -50,5 +53,12 @@ public class PanelExpendedor extends JPanel {
         for (JPanel panel : paneles) {
             add(panel);
         }
+    }
+    public void cambioModelo() {
+        removeAll();
+        crearAsignarPaneles();
+        /* Esto hace cosas, goooglearloooo, validate() y revalidate() ambos funcan. */
+        validate();
+        /* no es necesario un repaint y de hecho ni idea de cuándo podría serlo. */
     }
 }
