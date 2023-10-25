@@ -29,7 +29,7 @@ public class Expendedor {
     /**Deposito donde se almacena el vuelto en monedas de 100 pesos.*/
     final private Deposito<Moneda> depVuelto;
     /**Deposito donde se almacena el producto despues de una compra.**/
-    private Producto depCompra;
+    private Producto compra;
 
     /**
      *
@@ -107,7 +107,7 @@ public class Expendedor {
             throw new PagoInsuficienteException("El valor de la moneda es menor que del producto solicitado.");
         }
 
-        if (depCompra != null) {
+        if (compra != null) {
             depVuelto.addObjeto(moneda);
             throw new CompraNoRetiradaException("Existe un producto sin retirar en el depósito del expendedor.");
         }
@@ -121,7 +121,7 @@ public class Expendedor {
         for (int i = 0; i < (moneda.getValor() - precio); i += 100) {
             depVuelto.addObjeto(new Moneda100());
         }
-        depCompra = compra;
+        this.compra = compra;
     }
 
     /**
@@ -154,5 +154,9 @@ public class Expendedor {
 
     public Deposito<Moneda> getDepVuelto() {
         return depVuelto;
+    }
+
+    public Producto getCompra() {
+        return compra;
     }
 }
