@@ -34,7 +34,7 @@ public class PanelProducto extends JLabel {
                         break;
                 }
             } catch (IOException e) {
-                throw new RuntimeException(e.getMessage());
+                PanelExcepcion.imprimir(e);
             }
         Image reImg = imagen.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
         setIcon(new ImageIcon(reImg));

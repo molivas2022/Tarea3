@@ -53,8 +53,7 @@ public class PanelBotones extends JPanel {
                     Controlador.comprarProducto(monedaSeleccionada, idProducto);
 
                 } catch (Exception e) {
-                    // TODO: CÓMO diantres MANEJAMOS LA EXCEPCIÓN !?
-                    System.err.println(e.getMessage());
+                    PanelExcepcion.imprimir(e);
                 }
             }
         });
@@ -88,7 +87,7 @@ public class PanelBotones extends JPanel {
                     return button;
                 }
             }
-            return null; //TODO: Una excepción ?
+            return null;
         }
     }
 }
