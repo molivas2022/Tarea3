@@ -6,11 +6,6 @@ import javax.swing.*;
 public final class AppExpendedor {
 
     private AppExpendedor() {
-        /*
-         * TODO: Hacer que hayan más observadores, para poder actualizar views de manera
-         *      más targeted
-         */
-
         Expendedor exp = new Expendedor(2);
         VentanaApp frame = new VentanaApp(exp);
 
