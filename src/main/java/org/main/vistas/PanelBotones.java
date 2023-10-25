@@ -50,7 +50,7 @@ public class PanelBotones extends JPanel {
                     }
                     Moneda monedaSeleccionada = EnumMoneda.matchNombre( selMoneda.getSelected().getText() ).newInstance();
 
-                    exp.comprarProducto(monedaSeleccionada, idProducto);
+                    Controlador.comprarProducto(monedaSeleccionada, idProducto);
 
                 } catch (Exception e) {
                     // TODO: CÓMO diantres MANEJAMOS LA EXCEPCIÓN !?
@@ -61,10 +61,11 @@ public class PanelBotones extends JPanel {
     }
     class SeleccionMultiple extends JPanel {
         private JRadioButton[] buttons; //TODO: Hay que hacer método getter
+
+        // TODO: Usar camelCase !!
         private ButtonGroup buttongroup;
         public SeleccionMultiple(String title, String[] options) {
             super();
-
             buttons = new JRadioButton[options.length];
             buttongroup = new ButtonGroup();
 
@@ -82,9 +83,9 @@ public class PanelBotones extends JPanel {
             this.add(buttonpanel, BorderLayout.CENTER);
         }
         public JRadioButton getSelected() {
-            for (int i = 0; i < buttons.length; i++) {
-                if (buttons[i].isSelected()) {
-                    return buttons[i];
+            for (JRadioButton button : buttons) {
+                if (button.isSelected()) {
+                    return button;
                 }
             }
             return null; //TODO: Una excepción ?
