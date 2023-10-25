@@ -1,4 +1,5 @@
 package org.main.vistas;
+import org.main.Controlador;
 import org.main.modelos.expendedor.Expendedor;
 import org.main.modelos.moneda.Moneda1000;
 import org.main.modelos.productos.Catalogo;
@@ -50,6 +51,7 @@ public class PanelBotones extends JPanel {
                     Moneda monedaSeleccionada = EnumMoneda.matchNombre( selMoneda.getSelected().getText() ).newInstance();
 
                     exp.comprarProducto(monedaSeleccionada, idProducto);
+
                 } catch (Exception e) {
                     // TODO: CÓMO diantres MANEJAMOS LA EXCEPCIÓN !?
                     System.err.println(e.getMessage());
