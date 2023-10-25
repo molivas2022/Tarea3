@@ -15,5 +15,6 @@ public class PanelPrincipal extends JPanel {
         Controlador.setObservador(pExp);
         add(pExp);
         add(new PanelBotones());
+
     }
 }
