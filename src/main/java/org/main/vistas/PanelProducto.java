@@ -29,8 +29,18 @@ public class PanelProducto extends JLabel {
         System.out.println("Cargando imagenes");
         ArrayList<BufferedImage> spriteRet = new ArrayList<>();
         try {
-            BufferedImage cocaSprite = ImageIO.read(getClass().getResource("/CocaCola.png"));
-            spriteRet.add(cocaSprite);
+            switch (producto.consumir()) {
+                case "CocaCola":
+                    imagen = ImageIO.read(getClass().getResource("/CocaCola.png")); break;
+                case "Sprite":
+                    imagen = ImageIO.read(getClass().getResource("/Sprite.png")); break;
+                case "Fanta":
+                    imagen = ImageIO.read(getClass().getResource("/Fanta.png")); break;
+                case "Snickers":
+                    imagen = ImageIO.read(getClass().getResource("/Snickers.png")); break;
+                case "Super8":
+                    imagen = ImageIO.read(getClass().getResource("/Super8.png")); break;
+            }
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }

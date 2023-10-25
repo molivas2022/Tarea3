@@ -1,7 +1,11 @@
 package org.main.vistas;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 import org.main.modelos.moneda.*;
 
 public class PanelMoneda extends JPanel {
@@ -30,9 +34,30 @@ public class PanelMoneda extends JPanel {
     }
     public void paint(Graphics g) {
         //TODO: Añadir colores que representan valores
+        //TODO: No usar paint()
         super.paint(g);
-        g.setColor(Color.GRAY);
-        g.fillOval(0, 0, getWidth(), getHeight());
+
+        BufferedImage imagen = null;
+        try {
+            switch (moneda.getValor()) {
+                case 100:
+                    imagen = ImageIO.read(getClass().getResource("/Moneda100.png"));
+                    break;
+                case 500:
+                    imagen = ImageIO.read(getClass().getResource("/Moneda500.png"));
+                    break;
+                case 1000:
+                    imagen = ImageIO.read(getClass().getResource("/Moneda1000.png"));
+                    break;
+                case 1500:
+                    imagen = ImageIO.read(getClass().getResource("/Moneda1500.png"));
+                    break;
+            }
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+        Image reImg = imagen.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
+        g.drawImage(reImg, 0, 0, null);
         paintComponents(g);
     }
     class TextoSimple extends JLabel {
