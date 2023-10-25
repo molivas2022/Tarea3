@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AppExpendedor implements Observador {
-
     final private JFrame frame;
     final private Expendedor exp = new Expendedor(2, this);
 
