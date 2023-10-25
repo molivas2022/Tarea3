@@ -16,7 +16,7 @@ public class PanelPrincipal extends JPanel {
     public PanelPrincipal(Expendedor exp) {
         super();
         this.pExp = new PanelExpendedor(exp);
-        this.pBot = new PanelBotones(exp);
+        this.pBot = new PanelBotones();
         setLayout(new GridLayout(1, 0));
         add(pExp);
         add(pBot);
