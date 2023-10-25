@@ -11,15 +11,15 @@ import org.main.modelos.expendedor.Expendedor;
  */
 public enum Catalogo {
     /**Constante que describe el producto bebida CocaCola*/
-    COCACOLA(1000, 1, "Coca Cola"),
+    COCACOLA(1000, CocaCola.class, "Coca Cola", 0),
     /**Constante que describe el producto bebida Sprite*/
-    SPRITE(1000, 2, "Sprite"),
+    SPRITE(1000, Sprite.class, "Sprite", 1),
     /**Constante que describe el producto bebida Fanta*/
-    FANTA(1000, 3, "Fanta"),
+    FANTA(1000, Fanta.class, "Fanta", 2),
     /**Constante que describe el producto dulce Snickers*/
-    SNICKERS(800, 4, "Snickers"),
+    SNICKERS(800, Snickers.class, "Snickers", 3),
     /**Constante que describe el producto dulce Super8*/
-    SUPER8(800, 5, "Super 8");
+    SUPER8(800, Super8.class, "Super 8", 4);
     /**
      * Precio del producto.
      */
@@ -27,17 +27,19 @@ public enum Catalogo {
     /**
      * Identificador numerico del producto que utiliza <code>Expendedor</code>.
      */
-    private int id;
+    private Class tipo;
     private String nombre;
+    private int id;
     /**
      * Constructor unico de los productos.
      * @param precio Precio del producto.
      * @param id Identificador del producto.
      */
-    Catalogo (int precio, int id, String nombre) {
+    Catalogo (int precio, Class tipo, String nombre, int id) {
         this.precio = precio;
-        this.id = id;
+        this.tipo = tipo;
         this.nombre = nombre;
+        this.id = id;
     }
 
     /**
@@ -47,7 +49,9 @@ public enum Catalogo {
     public int getPrecio() {
         return precio;
     }
-
+    public String precioAsString() {
+        return Integer.toString(precio);
+    }
     /**
      * Permite modificar el precio de un producto.
      * @param precio Nuevo precio que queremos que tome el producto.
@@ -62,10 +66,9 @@ public enum Catalogo {
     public int getId() {
         return id;
     }
-    /**
-     * Permite modificar el identificador de un producto.
-     * @param id Nuevo identificador del producto.
-     */
+    public Class getTipo() {
+        return tipo;
+    }
     public void setId(int id) {
         this.id = id;
     }

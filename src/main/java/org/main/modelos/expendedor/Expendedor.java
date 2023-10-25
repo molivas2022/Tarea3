@@ -16,7 +16,10 @@ import org.main.modelos.productos.*;
  * @version 1.0.0 17-10-2023
  */
 public class Expendedor {
+    private Deposito[] depositosProducto;
     /**Deposito donde se almacenan las unidades de la bebida CocaCola.*/
+    //TODO: Refactorizar para no usar MÁS muchos depositos de producto
+    //TODO: Quitar uso de variables especificas por cada deposito de productos y usar depositosProducto
     final private Deposito<CocaCola> depCocaCola;
     /**Deposito donde se almacenan las unidades de la bebida Sprite.*/
     final private Deposito<Sprite> depSprite;
@@ -38,11 +41,21 @@ public class Expendedor {
      * @param cantidadProductos Con cuantas unidades rellena cada deposito de los productos que maneja.
      */
     public Expendedor(int cantidadProductos) {
-        depCocaCola = new Deposito<>();
+        depCocaCola = new Deposito<> ();
         depSprite = new Deposito<>();
         depFanta = new Deposito<>();
         depSnickers = new Deposito<>();
         depSuper8 = new Deposito<>();
+
+        depositosProducto = new Deposito[Catalogo.values().length];
+        {   //TODO: no
+            depositosProducto[Catalogo.COCACOLA.ordinal()] = depCocaCola;
+            depositosProducto[Catalogo.SPRITE.ordinal()] = depSprite;
+            depositosProducto[Catalogo.FANTA.ordinal()] = depFanta;
+            depositosProducto[Catalogo.SNICKERS.ordinal()] = depSnickers;
+            depositosProducto[Catalogo.SUPER8.ordinal()] = depSuper8;
+        }
+
         depVuelto = new Deposito<>();
         /*
          * Llenamos los depósitos del expendedor con la cantidad especificada.
@@ -132,6 +145,10 @@ public class Expendedor {
         return depVuelto.getObjeto();
     }
 
+    public Deposito[] getDepositosProducto() {return depositosProducto;}
+    public Deposito getDepositoProducto(Catalogo PRODUCTO) {
+        return depositosProducto[PRODUCTO.ordinal()];
+    }
     public Deposito<CocaCola> getDepCocaCola() {
         return depCocaCola;
     }
