@@ -36,18 +36,13 @@ public class Expendedor {
     /**Deposito donde se almacena el vuelto en monedas de 100 pesos.*/
     final private Deposito<Moneda> depVuelto;
 
-    Observador observador;
-
-
-
     /**
      *
      *  Constructor unico de Expendedor, recibe el numero de productos
      * con que debe rellenar sus depositos.
      * @param cantidadProductos Con cuantas unidades rellena cada deposito de los productos que maneja.
      */
-    public Expendedor(int cantidadProductos, Observador observador) {
-        this.observador = observador;
+    public Expendedor(int cantidadProductos) {
         depCocaCola = new Deposito<>();
         depSprite = new Deposito<>();
         depFanta = new Deposito<>();
@@ -127,7 +122,6 @@ public class Expendedor {
             depVuelto.addObjeto(new Moneda100());
         }
 
-        observador.cambioModelo();
         return compra;
     }
 
