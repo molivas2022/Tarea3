@@ -1,7 +1,5 @@
 package org.main.modelos.moneda;
 
-import org.main.modelos.productos.Catalogo;
-
 public enum EnumMoneda {
     MONEDA100(100, Moneda100.class , "Moneda de 100 pesos"),
     MONEDA500(500, Moneda500.class , "Moneda de 500 pesos"),
@@ -30,7 +28,7 @@ public enum EnumMoneda {
     }
     static public EnumMoneda matchNombre(String nombre) {
         for (EnumMoneda m: EnumMoneda.values()) {
-            if (m.getNombre() == nombre) {
+            if (m.getNombre().equals(nombre)) {
                 return m;
             }
         }
@@ -42,7 +40,7 @@ public enum EnumMoneda {
             moneda = (Moneda)tipo.getDeclaredConstructor().newInstance();
         }
         catch (Exception e) {
-            System.err.println(e);
+            System.err.println(e.getMessage());
         }
         return moneda;
     }
