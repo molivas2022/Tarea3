@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.sql.Array;
 
 public class PanelBotones extends JPanel {
-    public PanelBotones(Expendedor exp) {
+    public PanelBotones() {
         super();
 
         setLayout(new GridLayout(4,1));
