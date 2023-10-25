@@ -16,6 +16,5 @@ public class VentanaApp extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(640, 640);
         pack();
-        setVisible(true);
     }
 }

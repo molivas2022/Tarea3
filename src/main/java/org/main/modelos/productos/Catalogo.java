@@ -1,12 +1,10 @@
 package org.main.modelos.productos;
 
-import org.main.modelos.comprador.Comprador;
 import org.main.modelos.expendedor.Expendedor;
 
 /**
  * Enumeracion que describe la informacion relevante de los productos que maneja <code>Expendedor</code>.
  * @see Expendedor
- * @see Comprador
  * @author Askorin
  * @author molivas2022
  * @version 1.0.0 17-10-2023
