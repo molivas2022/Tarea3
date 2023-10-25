@@ -1,20 +1,13 @@
 package org.main.modelos.expendedor;
-import org.main.Observador;
-import org.main.modelos.comprador.Comprador;
-
-import org.main.customexception.IdProductoNoExisteException;
-import org.main.customexception.NoHayProductoException;
-import org.main.customexception.PagoIncorrectoException;
-import org.main.customexception.PagoInsuficienteException;
+import org.main.customexception.*;
 import org.main.modelos.moneda.Moneda;
 import org.main.modelos.moneda.Moneda100;
 import org.main.modelos.productos.*;
 
 /**
- * Clase que modela una maquina expendedora.
+ * Clase que modela una máquina expendedora.
  * Su funcion principal es modelar la compra de un producto deseado
  * a cambio de una moneda que cubra su valor.
- * @see Comprador
  * @see Moneda
  * @see Deposito
  * @see Producto
@@ -35,6 +28,8 @@ public class Expendedor {
     final private Deposito<Super8> depSuper8;
     /**Deposito donde se almacena el vuelto en monedas de 100 pesos.*/
     final private Deposito<Moneda> depVuelto;
+    /**Deposito donde se almacena el producto despues de una compra.**/
+    private Producto depCompra;
 
     /**
      *
@@ -66,17 +61,17 @@ public class Expendedor {
      * Efectua la compra de un producto a cambio de una moneda.
      * @param moneda Moneda con cual se quiere comprar el producto.
      * @param id Identificador numerico del producto solicitado.
-     * @return Devuelve una unidadd del producto deseado si la compra es exitosa.
      * @throws PagoInsuficienteException    En caso de que la moneda no cubra el valor del producto.
      * @throws PagoIncorrectoException      En caso de que la moneda ingresada sea invalida (<code>null</code>).
      * @throws NoHayProductoException       En caso de que no queden unidades del producto solicitado.
      * @throws IdProductoNoExisteException  En caso de que el identificador numerico sea invalido.
      */
-    public Producto comprarProducto(Moneda moneda, int id)
+    public void comprarProducto(Moneda moneda, int id)
             throws PagoInsuficienteException,
             PagoIncorrectoException,
             NoHayProductoException,
-            IdProductoNoExisteException
+            IdProductoNoExisteException,
+            CompraNoRetiradaException
     {
 
 
@@ -112,6 +107,11 @@ public class Expendedor {
             throw new PagoInsuficienteException("El valor de la moneda es menor que del producto solicitado.");
         }
 
+        if (depCompra != null) {
+            depVuelto.addObjeto(moneda);
+            throw new CompraNoRetiradaException("Existe un producto sin retirar en el depósito del expendedor.");
+        }
+
         Producto compra = (Producto) dep.getObjeto();
         if (compra == null) {
             depVuelto.addObjeto(moneda);
@@ -121,8 +121,7 @@ public class Expendedor {
         for (int i = 0; i < (moneda.getValor() - precio); i += 100) {
             depVuelto.addObjeto(new Moneda100());
         }
-
-        return compra;
+        depCompra = compra;
     }
 
     /**
