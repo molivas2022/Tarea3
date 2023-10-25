@@ -54,7 +54,7 @@ public class PanelMoneda extends JPanel {
                     break;
             }
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            PanelExcepcion.imprimir(e);
         }
         Image reImg = imagen.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
         g.drawImage(reImg, 0, 0, null);

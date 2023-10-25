@@ -7,6 +7,7 @@ import org.main.customexception.PagoInsuficienteException;
 import org.main.modelos.expendedor.Expendedor;
 import org.main.modelos.moneda.Moneda;
 import org.main.modelos.productos.Producto;
+import org.main.vistas.PanelExcepcion;
 
 public class Controlador {
     private static Expendedor expendedor;
@@ -16,12 +17,9 @@ public class Controlador {
         try {
             Producto compra = expendedor.comprarProducto(moneda, id);
             observador.cambioModelo();
-        } catch (PagoInsuficienteException | NoHayProductoException e) {
-            System.err.println(e.getMessage());
-        } catch (IdProductoNoExisteException e) {
-            throw new RuntimeException(e);
-        } catch (PagoIncorrectoException e) {
-            throw new RuntimeException(e);
+        } catch (PagoInsuficienteException | NoHayProductoException
+                 | IdProductoNoExisteException | PagoIncorrectoException e) {
+            PanelExcepcion.imprimir(e);
         }
     }
 
