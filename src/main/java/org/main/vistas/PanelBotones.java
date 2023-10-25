@@ -1,7 +1,6 @@
 package org.main.vistas;
 import org.main.Controlador;
 import org.main.modelos.expendedor.Expendedor;
-import org.main.modelos.moneda.Moneda1000;
 import org.main.modelos.productos.Catalogo;
 import org.main.modelos.moneda.*;
 
@@ -9,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Array;
 
 public class PanelBotones extends JPanel {
     public PanelBotones(Expendedor exp) {
@@ -25,11 +23,18 @@ public class PanelBotones extends JPanel {
                 new SeleccionMultiple("Seleccione que producto desea:", opcionesProducto);
         add(selProducto);
 
+
         //Selección de Moneda
         String[] opcionesMoneda = EnumMoneda.getAllNombres();
         SeleccionMultiple selMoneda =
-                new SeleccionMultiple("Ingrese una moneda:", opcionesMoneda);
-        add(selMoneda);
+                new SeleccionMultiple("Ingrese una moneda:", opcionesMoneda, new GridLayout(2,2));
+
+        //Ventana de Moneda
+        JPanel venMoneda = new JPanel();
+        venMoneda.setLayout(new GridLayout(1,2));
+        venMoneda.add(selMoneda, 0);
+
+        add(venMoneda);
 
         //Boton Comprar
         JButton BotonCompra = new JButton("Comprar producto");
@@ -57,29 +62,56 @@ public class PanelBotones extends JPanel {
                 }
             }
         });
+
+        //Botones Seleccion Moneda
+        for (JRadioButton b: selMoneda.getButtons()) {
+            b.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("el pepe");
+                    //Previsualización de selección de Moneda
+                    if (selMoneda.getSelected() != null) {
+                        Moneda preMoneda = EnumMoneda.matchNombre(selMoneda.getSelected().getText()).newInstance();
+                        PanelMoneda panelPreMoneda = new PanelMoneda(preMoneda, 64, 64);
+                        venMoneda.removeAll();
+                        venMoneda.add(selMoneda, 0);
+
+                        JPanel temp = new JPanel();
+                        temp.setLayout(new FlowLayout(FlowLayout.CENTER));
+                        temp.add(panelPreMoneda);
+                        venMoneda.add(temp, 1);
+                    }
+
+                    venMoneda.repaint();
+                    venMoneda.updateUI();
+                }
+            });
+        }
+
     }
     class SeleccionMultiple extends JPanel {
-        private JRadioButton[] buttons; //TODO: Hay que hacer método getter
-
-        // TODO: Usar camelCase !!
-        private ButtonGroup buttongroup;
+        private JRadioButton[] buttons;
+        private ButtonGroup buttonGroup;
         public SeleccionMultiple(String title, String[] options) {
+            this(title, options, new GridLayout(1, options.length));
+        }
+        public SeleccionMultiple(String title, String[] options, LayoutManager layout) {
             super();
             buttons = new JRadioButton[options.length];
-            buttongroup = new ButtonGroup();
+            buttonGroup = new ButtonGroup();
 
-            JPanel buttonpanel = new JPanel();
-            buttonpanel.setLayout(new GridLayout(1, buttons.length));
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.setLayout(layout);
 
             for (int i = 0; i < options.length; i++) {
                 buttons[i] = new JRadioButton(options[i]);
-                buttongroup.add(buttons[i]);
-                buttonpanel.add(buttons[i]);
+                buttonGroup.add(buttons[i]);
+                buttonPanel.add(buttons[i]);
             }
 
             this.setLayout(new BorderLayout());
             this.add(new Label(title), BorderLayout.PAGE_START);
-            this.add(buttonpanel, BorderLayout.CENTER);
+            this.add(buttonPanel, BorderLayout.CENTER);
         }
         public JRadioButton getSelected() {
             for (JRadioButton button : buttons) {
@@ -88,6 +120,9 @@ public class PanelBotones extends JPanel {
                 }
             }
             return null;
+        }
+        public JRadioButton[] getButtons() {
+            return buttons;
         }
     }
 }
