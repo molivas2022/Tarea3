@@ -6,13 +6,12 @@ import javax.swing.*;
 public final class AppExpendedor {
 
     private AppExpendedor() {
-        /*
-         * TODO: Hacer que hayan más observadores, para poder actualizar views de manera
-         *      más targeted
-         */
-
+        // TODO: Manejar excepciónes acá.
+        // TODO: Nombres más creativos para ventanas de excepción.
+        // TODO: Arreglar tests, ver qué hacer con clase Comprador.
         Expendedor exp = new Expendedor(2);
         VentanaApp frame = new VentanaApp(exp);
+        frame.setVisible(true);
 
         /*
          * Creamos el controlador, su modelo es el expendedor y su vista será

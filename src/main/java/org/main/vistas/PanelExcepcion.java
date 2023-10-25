@@ -9,6 +9,7 @@ public class PanelExcepcion {
                 JOptionPane.ERROR_MESSAGE);
     }
     static private String truncateExceptionTitle(Exception e) {
+        // TODO: USAR. CAMEL. CASE.
         String[] var = ((e.getClass().toString()).split("\\."));
         String error_title = var[var.length - 1];
         return error_title;

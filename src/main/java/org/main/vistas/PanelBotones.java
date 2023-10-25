@@ -34,7 +34,6 @@ public class PanelBotones extends JPanel {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try {
-                    // TODO: Se podría usar un controlador o algo?
                     if (selProducto.getSelected() == null) {
                         throw new Exception("Seleccione un producto.");
                     }
