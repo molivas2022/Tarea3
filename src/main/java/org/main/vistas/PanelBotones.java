@@ -13,7 +13,6 @@ public class PanelBotones extends JPanel {
 
         setLayout(new GridLayout(4,1));
         setBackground(Color.white);
-        setPreferredSize(new Dimension(600, 600));
 
         //Selección de Producto
         String[] opcionesProducto = Catalogo.getAllNombres();
