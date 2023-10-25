@@ -6,8 +6,10 @@ import javax.swing.*;
 public final class AppExpendedor {
 
     private AppExpendedor() {
+        // TODO: Nombres más creativos para ventanas de excepción.
         Expendedor exp = new Expendedor(2);
         VentanaApp frame = new VentanaApp(exp);
+        frame.setVisible(true);
 
         /*
          * Creamos el controlador, su modelo es el expendedor y su vista será
