@@ -13,15 +13,15 @@ import org.main.modelos.expendedor.Expendedor;
  */
 public enum Catalogo {
     /**Constante que describe el producto bebida CocaCola*/
-    COCACOLA(1000, 1),
+    COCACOLA(1000, 1, "Coca Cola"),
     /**Constante que describe el producto bebida Sprite*/
-    SPRITE(1000, 2),
+    SPRITE(1000, 2, "Sprite"),
     /**Constante que describe el producto bebida Fanta*/
-    FANTA(1000, 3),
+    FANTA(1000, 3, "Fanta"),
     /**Constante que describe el producto dulce Snickers*/
-    SNICKERS(800, 4),
+    SNICKERS(800, 4, "Snickers"),
     /**Constante que describe el producto dulce Super8*/
-    SUPER8(800, 5);
+    SUPER8(800, 5, "Super 8");
     /**
      * Precio del producto.
      */
@@ -30,15 +30,16 @@ public enum Catalogo {
      * Identificador numerico del producto que utiliza <code>Expendedor</code>.
      */
     private int id;
-
+    private String nombre;
     /**
      * Constructor unico de los productos.
      * @param precio Precio del producto.
      * @param id Identificador del producto.
      */
-    Catalogo (int precio, int id) {
+    Catalogo (int precio, int id, String nombre) {
         this.precio = precio;
         this.id = id;
+        this.nombre = nombre;
     }
 
     /**
@@ -70,5 +71,22 @@ public enum Catalogo {
     public void setId(int id) {
         this.id = id;
     }
-
+    public String getNombre() {
+        return nombre;
+    }
+    static public String[] getAllNombres() {
+        String[] nombres = new String[Catalogo.values().length];
+        for (int i = 0; i < Catalogo.values().length; i++) {
+            nombres[i] = Catalogo.values()[i].getNombre();
+        }
+        return nombres;
+    }
+    static public Catalogo matchNombre(String nombre) {
+        for (Catalogo c: Catalogo.values()) {
+            if (c.getNombre() == nombre) {
+                return c;
+            }
+        }
+        return null;
+    }
 }

@@ -19,14 +19,13 @@ public class PanelBotones extends JPanel {
         setPreferredSize(new Dimension(600, 600));
 
         //Selección de Producto
-        String[] opcionesProducto = {"Coca Cola", "Sprite", "Fanta"};
+        String[] opcionesProducto = Catalogo.getAllNombres();
         SeleccionMultiple selProducto =
                 new SeleccionMultiple("Seleccione que producto desea:", opcionesProducto);
         add(selProducto);
 
         //Selección de Moneda
-        String[] opcionesMoneda = {"Moneda de 100 pesos", "Moneda de 500 pesos",
-                "Moneda de 1000 pesos", "Moneda de 1500 pesos"};
+        String[] opcionesMoneda = EnumMoneda.getAllNombres();
         SeleccionMultiple selMoneda =
                 new SeleccionMultiple("Ingrese una moneda:", opcionesMoneda);
         add(selMoneda);
@@ -40,35 +39,15 @@ public class PanelBotones extends JPanel {
             public void actionPerformed(ActionEvent evt) {
                 try {
                     // TODO: Se podría usar un controlador o algo?
-                    // TODO: NECESITO REFACTORIZAR ESTO
-
-                    int idProducto = -1;
                     if (selProducto.getSelected() == null) {
                         throw new Exception("Seleccione un producto.");
                     }
-                    switch (selProducto.getSelected().getText()) {
-                        case "Coca Cola":
-                            idProducto = Catalogo.COCACOLA.getId(); break;
-                        case "Sprite":
-                            idProducto = Catalogo.SPRITE.getId(); break;
-                        case "Fanta":
-                            idProducto = Catalogo.FANTA.getId(); break;
-                    }
+                    int idProducto = Catalogo.matchNombre( selProducto.getSelected().getText() ).getId();
 
-                    Moneda monedaSeleccionada = null;
                     if (selMoneda.getSelected() == null) {
                         throw new Exception("Seleccione una moneda.");
                     }
-                    switch (selMoneda.getSelected().getText()) {
-                        case "Moneda de 100 pesos":
-                            monedaSeleccionada = new Moneda100(); break;
-                        case "Moneda de 500 pesos":
-                            monedaSeleccionada = new Moneda500(); break;
-                        case "Moneda de 1000 pesos":
-                            monedaSeleccionada = new Moneda1000(); break;
-                        case "Moneda de 1500 pesos":
-                            monedaSeleccionada = new Moneda1500(); break;
-                    }
+                    Moneda monedaSeleccionada = EnumMoneda.matchNombre( selMoneda.getSelected().getText() ).newInstance();
 
                     exp.comprarProducto(monedaSeleccionada, idProducto);
                 } catch (Exception e) {
@@ -110,4 +89,3 @@ public class PanelBotones extends JPanel {
         }
     }
 }
-
