@@ -1,41 +1,22 @@
 package org.main;
 import org.main.modelos.expendedor.Expendedor;
-import org.main.modelos.moneda.Moneda1000;
-import org.main.modelos.productos.Catalogo;
-import org.main.vistas.PanelPrincipal;
+import org.main.vistas.VentanaApp;
 import javax.swing.*;
-import java.awt.*;
 
-public class AppExpendedor implements Observador {
-    final private JFrame frame;
-    final private Expendedor exp = new Expendedor(2, this);
+public class AppExpendedor {
 
     AppExpendedor() {
-        frame = new JFrame("Expendedor");
-        /* Creamos el expendedor (Modelo) y le damos la referencia al Controlador. */
-        frame.setContentPane(new PanelPrincipal(exp));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(640, 640);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    public void cambioModelo() {
         /*
-         * TODO: Verdaderamente, no es necesario reconstruir el panel principal entero,
-         *       solo panelExpendedor, o no?
+         * TODO: Hacer que hayan más observadores, para poder actualizar views de manera
+         *      más targeted
          */
 
-        /*
-         * Se decidió construir un panel nuevo, si bien era posible (y funcionaba)
-         * organizar los subpaneles de manera que se pudieran modificar en runtime,
-         * esto parece ser más simple y requiere de menos implmenetación / complejidad.
-         */
-        frame.setContentPane(new PanelPrincipal(exp));
-        /* Esto hace cosas, goooglearloooo, validate() y revalidate() ambos funcan. */
-        frame.validate();
-        /* no es necesario un repaint y de hecho ni idea de cuándo podría serlo. */
-        // frame.repaint();
+        Expendedor exp = new Expendedor(2);
+        VentanaApp frame = new VentanaApp(exp);
+
+        /* Creamos el controlador, su modelo es el expendedor y su vista el frame. */
+        Controlador.setExpendedor(exp);
+        Controlador.setObservador(frame);
     }
 
     public static void main(String[] args) {
