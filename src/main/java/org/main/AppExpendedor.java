@@ -14,9 +14,11 @@ public final class AppExpendedor {
         Expendedor exp = new Expendedor(2);
         VentanaApp frame = new VentanaApp(exp);
 
-        /* Creamos el controlador, su modelo es el expendedor y su vista el frame. */
+        /*
+         * Creamos el controlador, su modelo es el expendedor y su vista será
+         * PanelExpendedor, que será creado más adelante.
+         */
         Controlador.setExpendedor(exp);
-        Controlador.setObservador(frame);
     }
 
     public static void main(String[] args) {

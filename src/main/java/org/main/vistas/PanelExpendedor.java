@@ -1,4 +1,5 @@
 package org.main.vistas;
+import org.main.Observador;
 import org.main.modelos.expendedor.Deposito;
 import org.main.modelos.expendedor.Expendedor;
 import org.main.modelos.moneda.*;
@@ -8,13 +9,17 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class PanelExpendedor extends JPanel {
+public class PanelExpendedor extends JPanel implements Observador {
+    private Expendedor exp;
     public PanelExpendedor(Expendedor exp) {
         super();
+        this.exp = exp;
         setLayout(new GridLayout(6,1));
         setPreferredSize(new Dimension(1200, 1200));
+        crearAsignarPaneles();
+    }
 
-
+    private void crearAsignarPaneles() {
         // Crear paneles deposito
         //TODO: refactor?
         Deposito<CocaCola> cocaDep = exp.getDepCocaCola();
@@ -48,5 +53,12 @@ public class PanelExpendedor extends JPanel {
         for (JPanel panel : paneles) {
             add(panel);
         }
+    }
+    public void cambioModelo() {
+        removeAll();
+        crearAsignarPaneles();
+        /* Esto hace cosas, goooglearloooo, validate() y revalidate() ambos funcan. */
+        validate();
+        /* no es necesario un repaint y de hecho ni idea de cuándo podría serlo. */
     }
 }
