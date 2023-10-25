@@ -15,10 +15,17 @@ public class PanelProducto extends JLabel {
         this.producto = producto;
         BufferedImage imagen = null;
         try {
-            if (producto.consumir() == "CocaCola") {
-                imagen = ImageIO.read(getClass().getResource("/CocaCola.png"));
-            } else if (producto.consumir() == "Sprite") {
-                imagen = ImageIO.read(getClass().getResource("/Sprite.png"));
+            switch (producto.consumir()) {
+                case "CocaCola":
+                    imagen = ImageIO.read(getClass().getResource("/CocaCola.png")); break;
+                case "Sprite":
+                    imagen = ImageIO.read(getClass().getResource("/Sprite.png")); break;
+                case "Fanta":
+                    imagen = ImageIO.read(getClass().getResource("/Fanta.png")); break;
+                case "Snickers":
+                    imagen = ImageIO.read(getClass().getResource("/Snickers.png")); break;
+                case "Super8":
+                    imagen = ImageIO.read(getClass().getResource("/Super8.png")); break;
             }
         } catch (IOException e) {
             System.err.println(e.getMessage());
