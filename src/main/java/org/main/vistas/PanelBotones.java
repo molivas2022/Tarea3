@@ -1,15 +1,11 @@
 package org.main.vistas;
 import org.main.Controlador;
-import org.main.modelos.expendedor.Expendedor;
-import org.main.modelos.moneda.Moneda1000;
 import org.main.modelos.productos.Catalogo;
 import org.main.modelos.moneda.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Array;
 
 public class PanelBotones extends JPanel {
     public PanelBotones() {

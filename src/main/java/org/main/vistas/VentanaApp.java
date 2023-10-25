@@ -5,7 +5,7 @@ import org.main.modelos.expendedor.Expendedor;
 import javax.swing.*;
 
 public class VentanaApp extends JFrame implements Observador {
-    private Expendedor exp;
+    private final Expendedor exp;
     public VentanaApp(Expendedor exp) {
         super("Expendedor");
         this.exp = exp;

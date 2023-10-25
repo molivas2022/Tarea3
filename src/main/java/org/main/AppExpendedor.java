@@ -3,9 +3,9 @@ import org.main.modelos.expendedor.Expendedor;
 import org.main.vistas.VentanaApp;
 import javax.swing.*;
 
-public class AppExpendedor {
+public final class AppExpendedor {
 
-    AppExpendedor() {
+    private AppExpendedor() {
         /*
          * TODO: Hacer que hayan más observadores, para poder actualizar views de manera
          *      más targeted
