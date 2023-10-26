@@ -1,6 +1,4 @@
 package org.main.vistas;
-import org.main.Controlador;
-import org.main.Observador;
 import org.main.modelos.expendedor.Expendedor;
 
 import javax.swing.*;
