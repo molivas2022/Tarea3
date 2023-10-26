@@ -2,12 +2,12 @@ package org.main.vistas;
 import org.main.Observador;
 import org.main.modelos.expendedor.Deposito;
 import org.main.modelos.expendedor.Expendedor;
-import org.main.modelos.moneda.*;
 import org.main.modelos.productos.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PanelExpendedor extends JPanel implements Observador {
     private Expendedor exp;
@@ -15,19 +15,25 @@ public class PanelExpendedor extends JPanel implements Observador {
         super();
         this.exp = exp;
         setLayout(new GridLayout(6,1));
-        crearAsignarPaneles();
-
-        add(new JButton("Rellenar Expendedor"));
+        crearAsignarComponentes();
     }
-
-    private void crearAsignarPaneles() {
+    private void crearAsignarComponentes() {
         for (int i = 0; i < Catalogo.values().length; i++) {
             add( mostrarPanelDepositoProducto(Catalogo.values()[i], 64, 64) );
         }
+        JButton botonRelleno = new JButton("Rellenar Expendedor");
+        botonRelleno.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                System.out.println("Hola");
+            }
+        });
+        add(botonRelleno);
     }
     public void cambioModelo() {
+        // TODO: DEUDA TENICAAAAA! OJALA NO CREAR EL BOTON DE NUEVO, QUE QUICHE...
         removeAll();
-        crearAsignarPaneles();
+        crearAsignarComponentes();
         /* Esto hace cosas, goooglearloooo, validate() y revalidate() ambos funcan. */
         validate();
         /* no es necesario un repaint y de hecho ni idea de cuándo podría serlo. */
