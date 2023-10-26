@@ -41,6 +41,11 @@ public class PanelBotones extends JPanel {
         JButton BotonCompra = new JButton("Comprar producto");
         add(BotonCompra);
 
+        //Retirar Producto
+        PanelRetiro pRet = new PanelRetiro();
+        Controlador.setObservadorRetiro(pRet);
+        add(pRet);
+
         BotonCompra.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {

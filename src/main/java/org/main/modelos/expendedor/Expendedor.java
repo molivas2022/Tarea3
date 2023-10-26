@@ -201,7 +201,16 @@ public class Expendedor {
         return depVuelto;
     }
 
-    public Producto getCompra() {
+    public Producto peekCompra() {
+        return compra;
+    }
+    public Producto getCompra() throws RetirarVacioException {
+        if (this.compra == null) {
+            throw new RetirarVacioException("No hay producto que retirar.");
+        }
+
+        Producto compra = this.compra;
+        this.compra = null;
         return compra;
     }
 }
