@@ -1,4 +1,5 @@
 package org.main.vistas;
+import org.main.Controlador;
 import org.main.Observador;
 import org.main.modelos.expendedor.Deposito;
 import org.main.modelos.expendedor.Expendedor;
@@ -25,7 +26,7 @@ public class PanelExpendedor extends JPanel implements Observador {
         botonRelleno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                System.out.println("Hola");
+                Controlador.rellenarExpendedor();
             }
         });
         add(botonRelleno);
