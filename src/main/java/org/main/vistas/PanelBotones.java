@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 public class PanelBotones extends JPanel {
     public PanelBotones() {
@@ -29,8 +31,9 @@ public class PanelBotones extends JPanel {
 
         //Ventana de Moneda
         JPanel venMoneda = new JPanel();
-        venMoneda.setLayout(new GridLayout(1,2));
-        venMoneda.add(selMoneda, 0);
+        venMoneda.setLayout(new BorderLayout());
+        venMoneda.setPreferredSize(new Dimension(600, 100));
+        venMoneda.add(selMoneda, BorderLayout.CENTER);
 
         add(venMoneda);
 
@@ -61,26 +64,26 @@ public class PanelBotones extends JPanel {
         });
 
         //Botones Seleccion Moneda
+        //TODO: Toda esta sección necesita refactor
         for (JRadioButton b: selMoneda.getButtons()) {
-            b.addActionListener(new ActionListener() {
+            b.addItemListener(new ItemListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
-                    System.out.println("el pepe");
+                public void itemStateChanged(ItemEvent e) {
                     //Previsualización de selección de Moneda
                     if (selMoneda.getSelected() != null) {
                         Moneda preMoneda = EnumMoneda.matchNombre(selMoneda.getSelected().getText()).newInstance();
                         PanelMoneda panelPreMoneda = new PanelMoneda(preMoneda, 64, 64);
-                        venMoneda.removeAll();
-                        venMoneda.add(selMoneda, 0);
 
-                        JPanel temp = new JPanel();
-                        temp.setLayout(new FlowLayout(FlowLayout.CENTER));
-                        temp.add(panelPreMoneda);
-                        venMoneda.add(temp, 1);
+                        venMoneda.removeAll();
+                        venMoneda.add(selMoneda, BorderLayout.CENTER);
+
+                        JPanel panel = new JPanel(new GridBagLayout());
+                        panel.add(panelPreMoneda, null);
+                        panel.setPreferredSize(new Dimension(64 * 3, 64));
+                        venMoneda.add(panel, BorderLayout.EAST);
                     }
 
-                    venMoneda.repaint();
-                    venMoneda.updateUI();
+                    venMoneda.updateUI(); //No entiendo que hace exactamente esta función
                 }
             });
         }
