@@ -9,7 +9,7 @@ public final class AppExpendedor {
         // TODO: Manejar excepciónes acá.
         // TODO: Nombres más creativos para ventanas de excepción.
         // TODO: Arreglar tests, ver qué hacer con clase Comprador.
-        Expendedor exp = new Expendedor(2);
+        Expendedor exp = new Expendedor();
         VentanaApp frame = new VentanaApp(exp);
         frame.setVisible(true);
 

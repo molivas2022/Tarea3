@@ -19,6 +19,10 @@ public class Controlador {
             PanelExcepcion.imprimir(e);
         }
     }
+    public static void rellenarExpendedor() {
+        expendedor.rellenar();
+        observador.cambioModelo();
+    }
 
     public static void setExpendedor(Expendedor expendedor) {
         Controlador.expendedor = expendedor;

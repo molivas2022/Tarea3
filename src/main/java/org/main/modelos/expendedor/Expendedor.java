@@ -33,14 +33,16 @@ public class Expendedor {
     final private Deposito<Moneda> depVuelto;
     /**Deposito donde se almacena el producto despues de una compra.**/
     private Producto compra;
+    /**Capacidad de cantidad máxima de productos a almacenar.**/
+    private int CAPACIDAD = 6;
+    private int primerNumSerie;
 
     /**
      *
      *  Constructor unico de Expendedor, recibe el numero de productos
      * con que debe rellenar sus depositos.
-     * @param cantidadProductos Con cuantas unidades rellena cada deposito de los productos que maneja.
      */
-    public Expendedor(int cantidadProductos) {
+    public Expendedor() {
         depCocaCola = new Deposito<> ();
         depSprite = new Deposito<>();
         depFanta = new Deposito<>();
@@ -61,13 +63,11 @@ public class Expendedor {
          * Llenamos los depósitos del expendedor con la cantidad especificada.
          * las ids de los productos serán numeros enteros sucesivos vueltos String.
          */
-        for (int i = 0; i < cantidadProductos; ++i) {
-            depCocaCola.addObjeto(new CocaCola(Integer.toString(100 + i)));
-            depSprite.addObjeto(new Sprite(Integer.toString(100 + cantidadProductos + i)));
-            depFanta.addObjeto(new Fanta(Integer.toString(100 + cantidadProductos * 2 + i)));
-            depSnickers.addObjeto(new Snickers(Integer.toString(100 + cantidadProductos * 3 + i)));
-            depSuper8.addObjeto(new Super8(Integer.toString(100 + cantidadProductos * 4 + i)));
-        }
+
+        /* Los números de serie partirán desde el 100. */
+        primerNumSerie = 100;
+        rellenar();
+
     }
 
     /**
@@ -135,6 +135,34 @@ public class Expendedor {
             depVuelto.addObjeto(new Moneda100());
         }
         this.compra = compra;
+    }
+
+    public void rellenar() {
+        // TODO: Refactor? Esto lo arregla Askorin eso si, es su culpa.
+        int i = 0;
+        while (depCocaCola.cuantosObjetos() < CAPACIDAD) {
+            depCocaCola.addObjeto(new CocaCola(Integer.toString(primerNumSerie + i)));
+            ++i;
+        }
+        while (depFanta.cuantosObjetos() < CAPACIDAD) {
+            depFanta.addObjeto(new Fanta(Integer.toString(primerNumSerie + i)));
+            ++i;
+        }
+        while (depSprite.cuantosObjetos() < CAPACIDAD) {
+            depSprite.addObjeto(new Sprite(Integer.toString(primerNumSerie + i)));
+            ++i;
+        }
+        while (depSnickers.cuantosObjetos() < CAPACIDAD) {
+            depSnickers.addObjeto(new Snickers(Integer.toString(primerNumSerie + i)));
+            ++i;
+        }
+        while (depSuper8.cuantosObjetos() < CAPACIDAD) {
+            depSuper8.addObjeto(new Super8(Integer.toString(primerNumSerie + i)));
+            ++i;
+        }
+        // Esto es para llevar cuenta de dónde seguir los números de serie al rellenar.
+        primerNumSerie = primerNumSerie + i;
+        System.out.println(primerNumSerie);
     }
 
     /**
