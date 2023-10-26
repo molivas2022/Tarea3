@@ -15,7 +15,7 @@ public class Controlador {
             expendedor.comprarProducto(moneda, id);
             observador.cambioModelo();
         } catch (PagoInsuficienteException | NoHayProductoException
-                 | IdProductoNoExisteException | PagoIncorrectoException |CompraNoRetiradaException e) {
+                 | IdProductoNoExisteException | PagoIncorrectoException | CompraNoRetiradaException e) {
             PanelExcepcion.imprimir(e);
         }
     }
