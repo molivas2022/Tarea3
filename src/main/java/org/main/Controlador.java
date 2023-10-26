@@ -14,15 +14,12 @@ public class Controlador {
 
     public static void comprarProducto(Moneda moneda, Catalogo producto) {
         try {
-            expendedor.comprarProducto(moneda, id);
-            observadorRetiro.cambioModelo();
+            expendedor.comprarProducto(moneda, producto);
             observadorExpendedor.cambioModelo();
-        } catch (PagoInsuficienteException | NoHayProductoException
-                 | IdProductoNoExisteException | CompraNoRetiradaException e) {
-            //Excepciones que devuelven la moneda con que se pagan hacen necesario actualizar el vuelto
-            PanelExcepcion.imprimir(e);
             observadorRetiro.cambioModelo();
-        } catch (Exception e) {
+
+        } catch (PagoInsuficienteException | NoHayProductoException
+                 | IdProductoNoExisteException | PagoIncorrectoException | CompraNoRetiradaException e) {
             PanelExcepcion.imprimir(e);
         }
     }
@@ -44,19 +41,7 @@ public class Controlador {
         if (expendedor == null) {return null;}
         return expendedor.peekCompra();
     }
-    public static void retirarVuelto() {
-        try {
-            expendedor.getVuelto();
-        }
-        catch (Exception e) {
-            PanelExcepcion.imprimir(e);
-        }
-        observadorRetiro.cambioModelo();
-    }
-    public static Moneda[] verVuelto() {
-        if (expendedor == null) {return null;}
-        return expendedor.peekVuelto();
-    }
+
     public static void setExpendedor(Expendedor expendedor) {
         Controlador.expendedor = expendedor;
     }
