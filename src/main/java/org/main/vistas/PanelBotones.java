@@ -53,14 +53,15 @@ public class PanelBotones extends JPanel {
                     if (selProducto.getSelected() == null) {
                         throw new Exception("Seleccione un producto.");
                     }
-                    int idProducto = Catalogo.matchNombre( selProducto.getSelected().getText() ).getId();
+
+                    Catalogo producto = Catalogo.matchNombre(selProducto.getSelected().getText());
 
                     if (selMoneda.getSelected() == null) {
                         throw new Exception("Seleccione una moneda.");
                     }
                     Moneda monedaSeleccionada = EnumMoneda.matchNombre( selMoneda.getSelected().getText() ).newInstance();
 
-                    Controlador.comprarProducto(monedaSeleccionada, idProducto);
+                    Controlador.comprarProducto(monedaSeleccionada, producto);
 
                 } catch (Exception e) {
                     PanelExcepcion.imprimir(e);
