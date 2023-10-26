@@ -12,7 +12,7 @@ public class PanelPrincipal extends JPanel {
         setLayout(new GridLayout(1, 0));
         PanelExpendedor pExp = new PanelExpendedor(exp);
         /* PanelExpendedor observará los cambios en vista que notificará Controlador. */
-        Controlador.setObservador(pExp);
+        Controlador.setObservadorExpendedor(pExp);
         add(pExp);
         add(new PanelBotones());
 

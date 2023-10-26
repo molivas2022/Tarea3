@@ -1,11 +1,14 @@
 package org.main.vistas;
 import org.main.Controlador;
+import org.main.modelos.expendedor.Expendedor;
 import org.main.modelos.productos.Catalogo;
 import org.main.modelos.moneda.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 public class PanelBotones extends JPanel {
     public PanelBotones() {
@@ -20,15 +23,28 @@ public class PanelBotones extends JPanel {
                 new SeleccionMultiple("Seleccione que producto desea:", opcionesProducto);
         add(selProducto);
 
+
         //Selección de Moneda
         String[] opcionesMoneda = EnumMoneda.getAllNombres();
         SeleccionMultiple selMoneda =
-                new SeleccionMultiple("Ingrese una moneda:", opcionesMoneda);
-        add(selMoneda);
+                new SeleccionMultiple("Ingrese una moneda:", opcionesMoneda, new GridLayout(2,2));
+
+        //Ventana de Moneda
+        JPanel venMoneda = new JPanel();
+        venMoneda.setLayout(new BorderLayout());
+        venMoneda.setPreferredSize(new Dimension(600, 100));
+        venMoneda.add(selMoneda, BorderLayout.CENTER);
+
+        add(venMoneda);
 
         //Boton Comprar
         JButton BotonCompra = new JButton("Comprar producto");
         add(BotonCompra);
+
+        //Retirar Producto
+        PanelRetiro pRet = new PanelRetiro();
+        Controlador.setObservadorRetiro(pRet);
+        add(pRet);
 
         BotonCompra.addActionListener(new ActionListener() {
             @Override
@@ -51,29 +67,56 @@ public class PanelBotones extends JPanel {
                 }
             }
         });
+
+        //Botones Seleccion Moneda
+        //TODO: Toda esta sección necesita refactor
+        for (JRadioButton b: selMoneda.getButtons()) {
+            b.addItemListener(new ItemListener() {
+                @Override
+                public void itemStateChanged(ItemEvent e) {
+                    //Previsualización de selección de Moneda
+                    if (selMoneda.getSelected() != null) {
+                        Moneda preMoneda = EnumMoneda.matchNombre(selMoneda.getSelected().getText()).newInstance();
+                        PanelMoneda panelPreMoneda = new PanelMoneda(preMoneda, 64, 64);
+
+                        venMoneda.removeAll();
+                        venMoneda.add(selMoneda, BorderLayout.CENTER);
+
+                        JPanel panel = new JPanel(new GridBagLayout());
+                        panel.add(panelPreMoneda, null);
+                        panel.setPreferredSize(new Dimension(64 * 3, 64));
+                        venMoneda.add(panel, BorderLayout.EAST);
+                    }
+
+                    venMoneda.updateUI(); //No entiendo que hace exactamente esta función
+                }
+            });
+        }
+
     }
     class SeleccionMultiple extends JPanel {
-        private JRadioButton[] buttons; //TODO: Hay que hacer método getter
-
-        // TODO: Usar camelCase !!
-        private ButtonGroup buttongroup;
+        private JRadioButton[] buttons;
+        private ButtonGroup buttonGroup;
         public SeleccionMultiple(String title, String[] options) {
+            this(title, options, new GridLayout(1, options.length));
+        }
+        public SeleccionMultiple(String title, String[] options, LayoutManager layout) {
             super();
             buttons = new JRadioButton[options.length];
-            buttongroup = new ButtonGroup();
+            buttonGroup = new ButtonGroup();
 
-            JPanel buttonpanel = new JPanel();
-            buttonpanel.setLayout(new GridLayout(1, buttons.length));
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.setLayout(layout);
 
             for (int i = 0; i < options.length; i++) {
                 buttons[i] = new JRadioButton(options[i]);
-                buttongroup.add(buttons[i]);
-                buttonpanel.add(buttons[i]);
+                buttonGroup.add(buttons[i]);
+                buttonPanel.add(buttons[i]);
             }
 
             this.setLayout(new BorderLayout());
             this.add(new Label(title), BorderLayout.PAGE_START);
-            this.add(buttonpanel, BorderLayout.CENTER);
+            this.add(buttonPanel, BorderLayout.CENTER);
         }
         public JRadioButton getSelected() {
             for (JRadioButton button : buttons) {
@@ -82,6 +125,9 @@ public class PanelBotones extends JPanel {
                 }
             }
             return null;
+        }
+        public JRadioButton[] getButtons() {
+            return buttons;
         }
     }
 }
