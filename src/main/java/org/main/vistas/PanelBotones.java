@@ -1,6 +1,5 @@
 package org.main.vistas;
 import org.main.Controlador;
-import org.main.modelos.expendedor.Expendedor;
 import org.main.modelos.productos.Catalogo;
 import org.main.modelos.moneda.*;
 import javax.swing.*;
