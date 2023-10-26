@@ -6,6 +6,7 @@ public enum EnumMoneda {
     MONEDA1000(1000, Moneda1000.class , "Moneda de 1000 pesos"),
     MONEDA1500(1500, Moneda1500.class , "Moneda de 1500 pesos");
     private int valor;
+
     private Class tipo;
     private String nombre;
     private EnumMoneda(int valor, Class tipo, String nombre) {

@@ -3,19 +3,17 @@ import org.main.Controlador;
 import org.main.modelos.expendedor.Expendedor;
 import org.main.modelos.productos.Catalogo;
 import org.main.modelos.moneda.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PanelBotones extends JPanel {
-    public PanelBotones(Expendedor exp) {
+    public PanelBotones() {
         super();
 
         setLayout(new GridLayout(4,1));
         setBackground(Color.white);
-        setPreferredSize(new Dimension(600, 600));
 
         //Selección de Producto
         String[] opcionesProducto = Catalogo.getAllNombres();
@@ -44,7 +42,6 @@ public class PanelBotones extends JPanel {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try {
-                    // TODO: Se podría usar un controlador o algo?
                     if (selProducto.getSelected() == null) {
                         throw new Exception("Seleccione un producto.");
                     }

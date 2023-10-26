@@ -3,20 +3,21 @@ import org.main.modelos.expendedor.Expendedor;
 import org.main.vistas.VentanaApp;
 import javax.swing.*;
 
-public class AppExpendedor {
+public final class AppExpendedor {
 
-    AppExpendedor() {
-        /*
-         * TODO: Hacer que hayan más observadores, para poder actualizar views de manera
-         *      más targeted
-         */
-
-        Expendedor exp = new Expendedor(2);
+    private AppExpendedor() {
+        // TODO: Manejar excepciónes acá.
+        // TODO: Nombres más creativos para ventanas de excepción.
+        // TODO: Arreglar tests, ver qué hacer con clase Comprador.
+        Expendedor exp = new Expendedor();
         VentanaApp frame = new VentanaApp(exp);
+        frame.setVisible(true);
 
-        /* Creamos el controlador, su modelo es el expendedor y su vista el frame. */
+        /*
+         * Creamos el controlador, su modelo es el expendedor y su vista será
+         * PanelExpendedor, que será creado más adelante.
+         */
         Controlador.setExpendedor(exp);
-        Controlador.setObservador(frame);
     }
 
     public static void main(String[] args) {

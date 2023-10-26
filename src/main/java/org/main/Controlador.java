@@ -1,9 +1,6 @@
 package org.main;
 
-import org.main.customexception.IdProductoNoExisteException;
-import org.main.customexception.NoHayProductoException;
-import org.main.customexception.PagoIncorrectoException;
-import org.main.customexception.PagoInsuficienteException;
+import org.main.customexception.*;
 import org.main.modelos.expendedor.Expendedor;
 import org.main.modelos.moneda.Moneda;
 import org.main.modelos.productos.Producto;
@@ -15,12 +12,16 @@ public class Controlador {
 
     public static void comprarProducto(Moneda moneda, int id) {
         try {
-            Producto compra = expendedor.comprarProducto(moneda, id);
+            expendedor.comprarProducto(moneda, id);
             observador.cambioModelo();
         } catch (PagoInsuficienteException | NoHayProductoException
-                 | IdProductoNoExisteException | PagoIncorrectoException e) {
+                 | IdProductoNoExisteException | PagoIncorrectoException | CompraNoRetiradaException e) {
             PanelExcepcion.imprimir(e);
         }
+    }
+    public static void rellenarExpendedor() {
+        expendedor.rellenar();
+        observador.cambioModelo();
     }
 
     public static void setExpendedor(Expendedor expendedor) {

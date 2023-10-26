@@ -1,20 +1,13 @@
 package org.main.modelos.expendedor;
-import org.main.Observador;
-import org.main.modelos.comprador.Comprador;
-
-import org.main.customexception.IdProductoNoExisteException;
-import org.main.customexception.NoHayProductoException;
-import org.main.customexception.PagoIncorrectoException;
-import org.main.customexception.PagoInsuficienteException;
+import org.main.customexception.*;
 import org.main.modelos.moneda.Moneda;
 import org.main.modelos.moneda.Moneda100;
 import org.main.modelos.productos.*;
 
 /**
- * Clase que modela una maquina expendedora.
+ * Clase que modela una máquina expendedora.
  * Su funcion principal es modelar la compra de un producto deseado
  * a cambio de una moneda que cubra su valor.
- * @see Comprador
  * @see Moneda
  * @see Deposito
  * @see Producto
@@ -23,7 +16,10 @@ import org.main.modelos.productos.*;
  * @version 1.0.0 17-10-2023
  */
 public class Expendedor {
+    private Deposito[] depositosProducto;
     /**Deposito donde se almacenan las unidades de la bebida CocaCola.*/
+    //TODO: Refactorizar para no usar MÁS muchos depositos de producto
+    //TODO: Quitar uso de variables especificas por cada deposito de productos y usar depositosProducto
     final private Deposito<CocaCola> depCocaCola;
     /**Deposito donde se almacenan las unidades de la bebida Sprite.*/
     final private Deposito<Sprite> depSprite;
@@ -35,48 +31,60 @@ public class Expendedor {
     final private Deposito<Super8> depSuper8;
     /**Deposito donde se almacena el vuelto en monedas de 100 pesos.*/
     final private Deposito<Moneda> depVuelto;
+    /**Deposito donde se almacena el producto despues de una compra.**/
+    private Producto compra;
+    /**Capacidad de cantidad máxima de productos a almacenar.**/
+    private int CAPACIDAD = 6;
+    private int primerNumSerie;
 
     /**
      *
      *  Constructor unico de Expendedor, recibe el numero de productos
      * con que debe rellenar sus depositos.
-     * @param cantidadProductos Con cuantas unidades rellena cada deposito de los productos que maneja.
      */
-    public Expendedor(int cantidadProductos) {
-        depCocaCola = new Deposito<>();
+    public Expendedor() {
+        depCocaCola = new Deposito<> ();
         depSprite = new Deposito<>();
         depFanta = new Deposito<>();
         depSnickers = new Deposito<>();
         depSuper8 = new Deposito<>();
+
+        depositosProducto = new Deposito[Catalogo.values().length];
+        {   //TODO: no
+            depositosProducto[Catalogo.COCACOLA.ordinal()] = depCocaCola;
+            depositosProducto[Catalogo.SPRITE.ordinal()] = depSprite;
+            depositosProducto[Catalogo.FANTA.ordinal()] = depFanta;
+            depositosProducto[Catalogo.SNICKERS.ordinal()] = depSnickers;
+            depositosProducto[Catalogo.SUPER8.ordinal()] = depSuper8;
+        }
+
         depVuelto = new Deposito<>();
         /*
          * Llenamos los depósitos del expendedor con la cantidad especificada.
          * las ids de los productos serán numeros enteros sucesivos vueltos String.
          */
-        for (int i = 0; i < cantidadProductos; ++i) {
-            depCocaCola.addObjeto(new CocaCola(Integer.toString(100 + i)));
-            depSprite.addObjeto(new Sprite(Integer.toString(100 + cantidadProductos + i)));
-            depFanta.addObjeto(new Fanta(Integer.toString(100 + cantidadProductos * 2 + i)));
-            depSnickers.addObjeto(new Snickers(Integer.toString(100 + cantidadProductos * 3 + i)));
-            depSuper8.addObjeto(new Super8(Integer.toString(100 + cantidadProductos * 4 + i)));
-        }
+
+        /* Los números de serie partirán desde el 100. */
+        primerNumSerie = 100;
+        rellenar();
+
     }
 
     /**
      * Efectua la compra de un producto a cambio de una moneda.
      * @param moneda Moneda con cual se quiere comprar el producto.
      * @param id Identificador numerico del producto solicitado.
-     * @return Devuelve una unidadd del producto deseado si la compra es exitosa.
      * @throws PagoInsuficienteException    En caso de que la moneda no cubra el valor del producto.
      * @throws PagoIncorrectoException      En caso de que la moneda ingresada sea invalida (<code>null</code>).
      * @throws NoHayProductoException       En caso de que no queden unidades del producto solicitado.
      * @throws IdProductoNoExisteException  En caso de que el identificador numerico sea invalido.
      */
-    public Producto comprarProducto(Moneda moneda, int id)
+    public void comprarProducto(Moneda moneda, int id)
             throws PagoInsuficienteException,
             PagoIncorrectoException,
             NoHayProductoException,
-            IdProductoNoExisteException
+            IdProductoNoExisteException,
+            CompraNoRetiradaException
     {
 
 
@@ -112,6 +120,11 @@ public class Expendedor {
             throw new PagoInsuficienteException("El valor de la moneda es menor que del producto solicitado.");
         }
 
+        if (compra != null) {
+            depVuelto.addObjeto(moneda);
+            throw new CompraNoRetiradaException("Existe un producto sin retirar en el depósito del expendedor.");
+        }
+
         Producto compra = (Producto) dep.getObjeto();
         if (compra == null) {
             depVuelto.addObjeto(moneda);
@@ -121,8 +134,35 @@ public class Expendedor {
         for (int i = 0; i < (moneda.getValor() - precio); i += 100) {
             depVuelto.addObjeto(new Moneda100());
         }
+        this.compra = compra;
+    }
 
-        return compra;
+    public void rellenar() {
+        // TODO: Refactor? Esto lo arregla Askorin eso si, es su culpa.
+        int i = 0;
+        while (depCocaCola.cuantosObjetos() < CAPACIDAD) {
+            depCocaCola.addObjeto(new CocaCola(Integer.toString(primerNumSerie + i)));
+            ++i;
+        }
+        while (depFanta.cuantosObjetos() < CAPACIDAD) {
+            depFanta.addObjeto(new Fanta(Integer.toString(primerNumSerie + i)));
+            ++i;
+        }
+        while (depSprite.cuantosObjetos() < CAPACIDAD) {
+            depSprite.addObjeto(new Sprite(Integer.toString(primerNumSerie + i)));
+            ++i;
+        }
+        while (depSnickers.cuantosObjetos() < CAPACIDAD) {
+            depSnickers.addObjeto(new Snickers(Integer.toString(primerNumSerie + i)));
+            ++i;
+        }
+        while (depSuper8.cuantosObjetos() < CAPACIDAD) {
+            depSuper8.addObjeto(new Super8(Integer.toString(primerNumSerie + i)));
+            ++i;
+        }
+        // Esto es para llevar cuenta de dónde seguir los números de serie al rellenar.
+        primerNumSerie = primerNumSerie + i;
+        System.out.println(primerNumSerie);
     }
 
     /**
@@ -133,6 +173,10 @@ public class Expendedor {
         return depVuelto.getObjeto();
     }
 
+    public Deposito[] getDepositosProducto() {return depositosProducto;}
+    public Deposito getDepositoProducto(Catalogo PRODUCTO) {
+        return depositosProducto[PRODUCTO.ordinal()];
+    }
     public Deposito<CocaCola> getDepCocaCola() {
         return depCocaCola;
     }
@@ -155,5 +199,9 @@ public class Expendedor {
 
     public Deposito<Moneda> getDepVuelto() {
         return depVuelto;
+    }
+
+    public Producto getCompra() {
+        return compra;
     }
 }
