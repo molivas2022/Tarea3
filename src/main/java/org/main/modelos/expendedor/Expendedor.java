@@ -102,7 +102,6 @@ public class Expendedor {
         for (Catalogo c : Catalogo.values()) {
             while (depositosProducto.get(c.ordinal()).cuantosObjetos() < CAPACIDAD) {
                 Producto p = c.newInstance(Integer.toString(primerNumSerie + i));
-                System.out.println(p);
                 depositosProducto.get(c.ordinal()).addObjeto(p);
                 ++i;
             }

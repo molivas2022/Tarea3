@@ -29,7 +29,8 @@ public class Controlador {
     }
     public static void retirarProducto() {
         try {
-            expendedor.getCompra();
+            Producto compra = expendedor.getCompra();
+            System.out.println("Yummy, un(a) " + compra.consumir());
         }
         catch (Exception e) {
             PanelExcepcion.imprimir(e);
