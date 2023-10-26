@@ -119,6 +119,16 @@ public class Expendedor {
         if (vuelto == null) {
             throw new RetirarVacioException("No hay vuelto que retirar.");
         }
+        return vuelto;
+    }
+
+    public Moneda[] peekVuelto() {
+        Moneda[] vuelto = new Moneda[depVuelto.cuantosObjetos()];
+        for (int i = 0; i < depVuelto.cuantosObjetos(); ++i) {
+            vuelto[i] = depVuelto.peekObjeto(i);
+        }
+        return vuelto;
+    }
 
 
     public ArrayList<Deposito<Producto>> getDepositosProducto() {return depositosProducto;}

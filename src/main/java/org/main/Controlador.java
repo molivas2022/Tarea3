@@ -14,7 +14,7 @@ public class Controlador {
 
     public static void comprarProducto(Moneda moneda, Catalogo producto) {
         try {
-            expendedor.comprarProducto(moneda, id);
+            expendedor.comprarProducto(moneda, producto);
             observadorRetiro.cambioModelo();
             observadorExpendedor.cambioModelo();
         } catch (PagoInsuficienteException | NoHayProductoException
