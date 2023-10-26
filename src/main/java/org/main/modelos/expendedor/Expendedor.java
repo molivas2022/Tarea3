@@ -169,10 +169,21 @@ public class Expendedor {
      * Permite extraer el vuelto de la compra moneda por moneda.
      * @return Devuelve una moneda de 100 pesos si falta por retirar vuelto, en caso contrario, devuelve <code>null</code>.
      */
-    public Moneda getVuelto() {
-        return depVuelto.getObjeto();
-    }
+    public Moneda getVuelto() throws RetirarVacioException {
+        Moneda vuelto = depVuelto.getObjeto();
+        if (vuelto == null) {
+            throw new RetirarVacioException("No hay vuelto que retirar.");
+        }
 
+        return vuelto;
+    }
+    public Moneda[] peekVuelto() {
+        Moneda[] vuelto = new Moneda[depVuelto.cuantosObjetos()];
+        for (int i = 0; i < depVuelto.cuantosObjetos(); i++) {
+            vuelto[i] = depVuelto.peekObjeto(i);
+        }
+        return vuelto;
+    }
     public Deposito[] getDepositosProducto() {return depositosProducto;}
     public Deposito getDepositoProducto(Catalogo PRODUCTO) {
         return depositosProducto[PRODUCTO.ordinal()];
