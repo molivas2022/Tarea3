@@ -2,19 +2,22 @@
 hide empty methods
 hide empty fields
 
+class AppExpendedor {
+  {method} {static} + main(String[]) : void
+}
+
+
 package "modelos" {
-  class Comprador {
-    {field} - sabor : String
-    {field} - vuelto : int
-    {method} - extraerVuelto(Expendedor) : void
-    {method} + queConsumiste() : String
-    {method} + cuantoVuelto() : int
-  }
   class Expendedor {
-    {field} - precioBebidas : int
-    {field} - precioDulces: int
+    {field} - CAPACIDAD : int
+    {field} - primerNumSerie : int
     {method} + getVuelto() : Moneda
     {method} + comprarProducto(Moneda, int) : Producto
+    {method} + rellenar() : void
+    {method} + getDepositoProducto(Catalogo) : Deposito<Producto>
+    {method} + peekVuelto() : Moneda[]
+    {method} + getCompra() : Producto
+    {method} + peekCompra() : Producto
   }
   class Deposito<T> {
       {method} + addObjeto(T) : void 
@@ -34,7 +37,21 @@ package "modelos" {
   }
   enum Catalogo {
       {field} - precio : int
-      {field} - id : int
+      {field} - tipo : Class
+      {field} - nombre : String
+      {field} - pathSprite : String
+      {method} {static} + getAllNombres() : String[]
+      {method} {static} + matchNombre(String) : Catalogo
+      {method} {static} + matchTipo(Class) : Catalogo
+      {method} + newInstance(String) : Producto
+  }
+  enum EnumMoneda {
+    {field} - valor : int
+    {field} - tipo : Class
+    {field} - nombre : String
+    {method} {static} + getAllNombres() : String[]
+    {method} {static} + matchNombre(String) : EnumMoneda
+    {method} + newInstance() : Moneda
   }
 
   class Moneda1500
@@ -51,24 +68,22 @@ package "modelos" {
 }
 
 package "vistas" {
+  class VentanaApp
   class PanelPrincipal
   class PanelExpendedor
-  class PanelComprador
 }
 
 ' Dependencias
-Comprador ..> Expendedor
-Comprador ..> Moneda
 Expendedor ..> Producto
 Expendedor ..> Moneda
 Expendedor ..> Catalogo
 
 ' Asociaciones
 Expendedor o-- Deposito
-PanelExpendedor o-- Expendedor
-PanelComprador o-- Comprador
-PanelPrincipal o-- PanelExpendedor
-PanelPrincipal o-- PanelComprador
+Expendedor o-- Producto
+AppExpendedor *-- VentanaApp
+VentanaApp *-- PanelPrincipal
+PanelPrincipal *-- PanelExpendedor
 
 ' Herencias Producto
 Producto <|-- Bebida
