@@ -1,7 +1,5 @@
 package org.main.modelos.productos;
 import org.main.modelos.expendedor.Expendedor;
-import org.main.modelos.moneda.Moneda;
-// TODO: Dejar de ocupar ID.
 
 /**
  * Enumeracion que describe la informacion relevante de los productos que maneja <code>Expendedor</code>.

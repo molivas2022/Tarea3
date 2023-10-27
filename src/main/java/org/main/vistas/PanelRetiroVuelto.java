@@ -28,8 +28,6 @@ public class PanelRetiroVuelto extends JPanel implements Observador {
         this.validate();
     }
     public void crearAsignarComponentes() {
-        //TODO: Decidir que hacer cuando hay demasiado que vuelto que imprimir en pantalla
-        //TODO: Quizas tendría más sentido retirar el vuelto LIFO en vez de FIFO
         JPanel panelRetirarVuelto = new JPanel(new BorderLayout());
 
         Moneda[] monedas = Controlador.verVuelto();
