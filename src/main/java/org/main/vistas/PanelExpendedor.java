@@ -43,8 +43,8 @@ public class PanelExpendedor extends JPanel implements Observador {
         JPanel panel = new JPanel(new BorderLayout());
 
         PRODUCTO.getTipo();
-        Deposito dep = exp.getDepositoProducto(PRODUCTO);
-        PanelDeposito panelDep = new PanelDeposito<>(PRODUCTO.getTipo(), dep, width, height);
+        Deposito<Producto> dep = exp.getDepositoProducto(PRODUCTO);
+        PanelDeposito<Producto> panelDep = new PanelDeposito<Producto>(PRODUCTO.getTipo(), dep, width, height);
         panel.add(panelDep, BorderLayout.CENTER);
 
         String text = PRODUCTO.getNombre() + ": " + PRODUCTO.precioAsString() + "$";

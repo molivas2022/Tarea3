@@ -1,6 +1,7 @@
 package org.main.modelos.productos;
-
 import org.main.modelos.expendedor.Expendedor;
+import org.main.modelos.moneda.Moneda;
+// TODO: Dejar de ocupar ID.
 
 /**
  * Enumeracion que describe la informacion relevante de los productos que maneja <code>Expendedor</code>.
@@ -11,15 +12,15 @@ import org.main.modelos.expendedor.Expendedor;
  */
 public enum Catalogo {
     /**Constante que describe el producto bebida CocaCola*/
-    COCACOLA(1000, CocaCola.class, "Coca Cola", 0),
+    COCACOLA(1000, CocaCola.class, "Coca Cola", "/CocaCola.png"),
     /**Constante que describe el producto bebida Sprite*/
-    SPRITE(1000, Sprite.class, "Sprite", 1),
+    SPRITE(1000, Sprite.class, "Sprite", "/Sprite.png"),
     /**Constante que describe el producto bebida Fanta*/
-    FANTA(1000, Fanta.class, "Fanta", 2),
+    FANTA(1000, Fanta.class, "Fanta", "/Fanta.png"),
     /**Constante que describe el producto dulce Snickers*/
-    SNICKERS(800, Snickers.class, "Snickers", 3),
+    SNICKERS(800, Snickers.class, "Snickers", "/Snickers.png"),
     /**Constante que describe el producto dulce Super8*/
-    SUPER8(800, Super8.class, "Super 8", 4);
+    SUPER8(800, Super8.class, "Super 8", "/Super8.png");
     /**
      * Precio del producto.
      */
@@ -29,17 +30,16 @@ public enum Catalogo {
      */
     private Class tipo;
     private String nombre;
-    private int id;
+    private String pathSprite;
     /**
      * Constructor unico de los productos.
      * @param precio Precio del producto.
-     * @param id Identificador del producto.
      */
-    Catalogo (int precio, Class tipo, String nombre, int id) {
+    Catalogo (int precio, Class tipo, String nombre, String pathSprite) {
         this.precio = precio;
         this.tipo = tipo;
         this.nombre = nombre;
-        this.id = id;
+        this.pathSprite = pathSprite;
     }
 
     /**
@@ -63,17 +63,14 @@ public enum Catalogo {
      * Permite acceder al identificador de un producto.
      * @return Devuelve el numero identificador del producto.
      */
-    public int getId() {
-        return id;
-    }
     public Class getTipo() {
         return tipo;
     }
-    public void setId(int id) {
-        this.id = id;
-    }
     public String getNombre() {
         return nombre;
+    }
+    public String getPathSprite() {
+        return pathSprite;
     }
     static public String[] getAllNombres() {
         String[] nombres = new String[Catalogo.values().length];
@@ -84,10 +81,29 @@ public enum Catalogo {
     }
     static public Catalogo matchNombre(String nombre) {
         for (Catalogo c: Catalogo.values()) {
-            if (c.getNombre() == nombre) {
+            if (c.getNombre().equals(nombre)) {
                 return c;
             }
         }
         return null;
+    }
+    static public Catalogo matchTipo(Class tipo) {
+        for (Catalogo c : Catalogo.values()) {
+            if (c.getTipo().equals(tipo)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
+    public Producto newInstance(String serie) {
+        Producto producto = null;
+        try {
+            producto = (Producto) tipo.getDeclaredConstructor(String.class).newInstance(serie);
+        }
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return producto;
     }
 }

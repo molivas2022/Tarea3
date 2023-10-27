@@ -3,6 +3,7 @@ package org.main;
 import org.main.customexception.*;
 import org.main.modelos.expendedor.Expendedor;
 import org.main.modelos.moneda.Moneda;
+import org.main.modelos.productos.Catalogo;
 import org.main.vistas.PanelExcepcion;
 import org.main.modelos.productos.Producto;
 
@@ -11,9 +12,9 @@ public class Controlador {
     private static Observador observadorExpendedor;
     private static Observador observadorRetiro;
 
-    public static void comprarProducto(Moneda moneda, int id) {
+    public static void comprarProducto(Moneda moneda, Catalogo producto) {
         try {
-            expendedor.comprarProducto(moneda, id);
+            expendedor.comprarProducto(moneda, producto);
             observadorRetiro.cambioModelo();
             observadorExpendedor.cambioModelo();
         } catch (PagoInsuficienteException | NoHayProductoException
@@ -31,7 +32,8 @@ public class Controlador {
     }
     public static void retirarProducto() {
         try {
-            expendedor.getCompra();
+            Producto compra = expendedor.getCompra();
+            System.out.println("Yummy, un(a) " + compra.consumir());
         }
         catch (Exception e) {
             PanelExcepcion.imprimir(e);
