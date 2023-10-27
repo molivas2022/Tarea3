@@ -32,7 +32,6 @@ public class PanelExpendedor extends JPanel implements Observador {
         add(botonRelleno);
     }
     public void cambioModelo() {
-        // TODO: DEUDA TENICAAAAA! OJALA NO CREAR EL BOTON DE NUEVO, QUE QUICHE...
         removeAll();
         crearAsignarComponentes();
         /* Esto hace cosas, goooglearloooo, validate() y revalidate() ambos funcan. */

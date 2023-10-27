@@ -34,7 +34,6 @@ public class PanelMoneda extends JPanel {
     }
     public void paint(Graphics g) {
         //TODO: Añadir colores que representan valores
-        //TODO: No usar paint()
         super.paint(g);
 
         BufferedImage imagen = null;
