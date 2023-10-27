@@ -12,7 +12,7 @@ package "modelos" {
     {field} - CAPACIDAD : int
     {field} - primerNumSerie : int
     {method} + getVuelto() : Moneda
-    {method} + comprarProducto(Moneda, int) : Producto
+    {method} + comprarProducto(Moneda, Catalogo) : Producto
     {method} + rellenar() : void
     {method} + getDepositoProducto(Catalogo) : Deposito<Producto>
     {method} + peekVuelto() : Moneda[]
