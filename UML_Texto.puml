@@ -1,6 +1,7 @@
-@startuml
+@startuml UML_Imagen
 hide empty methods
 hide empty fields
+skinparam groupInheritance 3
 
 skinparam legendBackgroundColor #ffffff
 legend
@@ -22,7 +23,21 @@ interface Observador {
   {method} cambioModelo() : void
 }
 
-class Controlador
+class Controlador {
+  {field} {static} - expendedor : Expendedor
+  {field} {static} - observadorExpendedor : Observador
+  {field} {static} - observadorRetiro : Observador
+  {method} {static} + comprarProducto(Moneda, Catalogo) : void
+  {method} {static} + rellenarProducto() : void
+  {method} {static} + retirarProducto() : void
+  {method} {static} + verProductoARetirar() : Producto
+  {method} {static} + retirarVuelto() : void
+  {method} {static} + verVuelto() : Moneda[]
+  {method} {static} + setExpendedor(Expendedor) : void
+  {method} {static} + getExpendedor() : Expendedor
+  {method} {static} + setObservadorExpendedor(Observador) : void
+  {method} {static} + setObservadorRetiro(Observador) : void
+}
 
 package "modelos" {
   class Expendedor {
@@ -98,16 +113,24 @@ package "modelos" {
 }
 
 package "vistas" {
-  class VentanaApp 
+  class VentanaApp {
+    {field} - exp: Expendedor
+  }
   class PanelPrincipal
-  class PanelExpendedor 
+  class PanelExpendedor {
+    {field} - exp: Expendedor
+    {method} - crearAsignarComponentes() : void
+    {method} - mostrarPanelDepositoProducto(Catalogo PRODUCTO, int width, int height) : JPanel
+  }
   class PanelDeposito<T> {
     {field} - type : Class<T>
     {field} ~ width : int
     {field} ~ height : int
     {method} - addComponents() : void
   }
-  class LabelProducto 
+  class LabelProducto {
+    {field} - producto: Producto
+  }
   class PanelMoneda {
     {method} - truncatedSerie() : String
     {method} - valorAsString() : String
@@ -118,9 +141,16 @@ package "vistas" {
     {method} + getSelected() : JRadioButton
     {method} + getButtons() : JRadioButton[]
   }
-  class PanelRetiro 
-  class PanelRetiroProducto 
-  class PanelRetiroVuelto
+  class PanelRetiro {
+    {field} - panelRetiroProducto: PanelRetiroProducto
+    {field} - panelRetiroVuelto : PanelRetiroVuelto
+  }
+  class PanelRetiroProducto {
+    {method} - crearAsignarComponentes() : void
+  }
+  class PanelRetiroVuelto {
+    {method} - crearAsignarComponentes() : void
+  }
 }
 
 package "Swing" {
