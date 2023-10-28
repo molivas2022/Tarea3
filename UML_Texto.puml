@@ -18,6 +18,8 @@ package "modelos" {
     {method} + comprarProducto(Moneda, Catalogo) : Producto
     {method} + rellenar() : void
     {method} + getDepositoProducto(Catalogo) : Deposito<Producto>
+    {method} + getDepositosProducto() : ArrayList<Deposito<Producto>>
+    {metohd} + getDepVuelto() : Deposito<Moneda>
     {method} + peekVuelto() : Moneda[]
     {method} + getCompra() : Producto
     {method} + peekCompra() : Producto
@@ -25,6 +27,8 @@ package "modelos" {
   class Deposito<T> {
       {method} + addObjeto(T) : void 
       {method} + getObjeto() : T
+      {method} + cuantosObjetos() : int
+      {method} + peekObjeto(int) : T
   }
   abstract Moneda implements Comparable {
     {method} {abstract} + getValor() : int
@@ -33,6 +37,7 @@ package "modelos" {
   abstract Producto {
       {field} - serie : String
       {method} {abstract} + consumir() : String
+      {method} + getSerie() : String
   }
   abstract Bebida {
   }
@@ -43,6 +48,12 @@ package "modelos" {
       {field} - tipo : Class
       {field} - nombre : String
       {field} - pathSprite : String
+      {method} + getPrecio() : int
+      {method} + precioAsString() : String
+      {method} + setPrecio(int) : void
+      {method} + getTipo() : Class
+      {method} + getNombre() : String
+      {method} + getPathSprite() : String
       {method} {static} + getAllNombres() : String[]
       {method} {static} + matchNombre(String) : Catalogo
       {method} {static} + matchTipo(Class) : Catalogo
@@ -52,6 +63,8 @@ package "modelos" {
     {field} - valor : int
     {field} - tipo : Class
     {field} - nombre : String
+    {method} + getValor() : int
+    {method} + getNombre() : String
     {method} {static} + getAllNombres() : String[]
     {method} {static} + matchNombre(String) : EnumMoneda
     {method} + newInstance() : Moneda
@@ -76,7 +89,7 @@ package "vistas" {
   class PanelExpendedor 
   class PanelDeposito 
   class PanelProducto 
-  clasS PanelMoneda 
+  class PanelMoneda 
   class PanelBotones 
   class PanelRetiro 
   class PanelRetiroProducto 
@@ -108,7 +121,7 @@ PanelBotones ..> Controlador
 PanelRetiroVuelto ..> Controlador
 PanelRetiro ..> Controlador
 
-' Asociaciones
+' Asociaciones y Agregaciones
 Expendedor o-- Deposito
 Expendedor o-- Producto
 
