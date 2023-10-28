@@ -31,7 +31,7 @@ public class PanelRetiroProducto extends JPanel implements Observador {
 
         Producto producto = Controlador.verProductoARetirar();
         if (producto != null) {
-            JLabel panelProducto = new PanelProducto(producto, 64, 64);
+            JLabel panelProducto = new LabelProducto(producto, 64, 64);
             JPanel centrarPanelProducto = new JPanel(new GridBagLayout());
             centrarPanelProducto.add(panelProducto);
             panelRetirarProducto.add(centrarPanelProducto, BorderLayout.CENTER);

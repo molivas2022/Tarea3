@@ -2,7 +2,6 @@ package org.main.vistas;
 
 import org.main.modelos.expendedor.Deposito;
 import org.main.modelos.moneda.Moneda;
-import org.main.modelos.productos.CocaCola;
 import org.main.modelos.productos.Producto;
 
 import javax.swing.*;
@@ -34,7 +33,7 @@ public class PanelDeposito<T> extends JPanel {
                 panel = new PanelMoneda((Moneda) deposito.peekObjeto(i), width, height);
                 add(panel);
             } else if (Producto.class.isAssignableFrom(type)) {
-                JLabel label = new PanelProducto((Producto) deposito.peekObjeto(i), width, height);
+                JLabel label = new LabelProducto((Producto) deposito.peekObjeto(i), width, height);
                 add(label);
             }
         }

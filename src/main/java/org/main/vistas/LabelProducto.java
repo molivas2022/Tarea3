@@ -7,11 +7,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-// TODO: Cambiarle el nombre, es un JLabel...
 // TODO: Manejar casos null.
-public class PanelProducto extends JLabel {
+public class LabelProducto extends JLabel {
     Producto producto;
-    PanelProducto(Producto producto, int width, int height) {
+    LabelProducto(Producto producto, int width, int height) {
         super();
         setSize(width, height);
         setPreferredSize(new Dimension(getWidth(), getHeight()));
