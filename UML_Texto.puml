@@ -1,7 +1,6 @@
 @startuml UML_Imagen
 hide empty methods
 hide empty fields
-skinparam groupInheritance 3
 
 skinparam legendBackgroundColor #ffffff
 legend
