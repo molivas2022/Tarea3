@@ -1,12 +1,26 @@
-@startuml UML_Imagen
+@startuml
 hide empty methods
 hide empty fields
+
+skinparam legendBackgroundColor #ffffff
+legend
+
+|= field |= method |=  |
+|  <img:http://s.plantuml.com/private-field.png>     |   <img:http://s.plantuml.com/private-method.png>     | private |
+|  <img:http://s.plantuml.com/protected-field.png>   |   <img:http://s.plantuml.com/protected-method.png>   | protected |
+|  <img:http://s.plantuml.com/package-private-field.png>     |   <img:http://s.plantuml.com/package-private-method.png>    | package private |
+|  <img:http://s.plantuml.com/public-field.png>     |   <img:http://s.plantuml.com/public-method.png>     | public |
+
+endlegend
+
 
 class AppExpendedor {
   {method} {static} + main(String[]) : void
 }
 
-interface Observador
+interface Observador {
+  {method} cambioModelo() : void
+}
 
 class Controlador
 
@@ -85,12 +99,25 @@ package "modelos" {
 
 package "vistas" {
   class VentanaApp 
-  class PanelPrincipal 
+  class PanelPrincipal
   class PanelExpendedor 
-  class PanelDeposito 
-  class PanelProducto 
-  class PanelMoneda 
-  class PanelBotones 
+  class PanelDeposito<T> {
+    {field} - type : Class<T>
+    {field} ~ width : int
+    {field} ~ height : int
+    {method} - addComponents() : void
+  }
+  class LabelProducto 
+  class PanelMoneda {
+    {method} - truncatedSerie() : String
+    {method} - valorAsString() : String
+  }
+  class TextoSimple
+  class PanelBotones
+  class SeleccionMultiple {
+    {method} + getSelected() : JRadioButton
+    {method} + getButtons() : JRadioButton[]
+  }
   class PanelRetiro 
   class PanelRetiroProducto 
   class PanelRetiroVuelto
@@ -99,6 +126,7 @@ package "vistas" {
 package "Swing" {
   class JFrame
   class JPanel
+  class JLabel
   class JButton
   class JRadioButton
   class ButtonGroup
@@ -138,13 +166,13 @@ PanelBotones o-- PanelMoneda
 PanelBotones o-- PanelRetiro
 
 PanelRetiroVuelto o-- PanelMoneda
-PanelRetiroProducto o-- PanelProducto
+PanelRetiroProducto o-- LabelProducto
 
 PanelDeposito o-- PanelMoneda
-PanelDeposito o-- PanelProducto
+PanelDeposito o-- LabelProducto
 
 PanelMoneda o-- Moneda
-PanelProducto o-- Producto
+LabelProducto o-- Producto
 PanelDeposito o-- Deposito
 
 
@@ -198,7 +226,11 @@ PanelRetiroVuelto o-- JButton
 PanelRetiroProducto o-- JButton
 
 JPanel <|-- PanelMoneda
-JPanel <|-- PanelProducto
+JLabel <|-- LabelProducto
 JPanel <|-- PanelDeposito
+JLabel <|-- TextoSimple
 
+JPanel <|-- SeleccionMultiple
+SeleccionMultiple o-- JRadioButton
+SeleccionMultiple o-- ButtonGroup
 @enduml
