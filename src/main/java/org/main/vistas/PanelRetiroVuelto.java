@@ -27,7 +27,7 @@ public class PanelRetiroVuelto extends JPanel implements Observador {
         this.crearAsignarComponentes();
         this.validate();
     }
-    public void crearAsignarComponentes() {
+    private void crearAsignarComponentes() {
         JPanel panelRetirarVuelto = new JPanel(new BorderLayout());
 
         Moneda[] monedas = Controlador.verVuelto();

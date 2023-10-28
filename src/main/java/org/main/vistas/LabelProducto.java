@@ -9,7 +9,7 @@ import java.io.IOException;
 
 // TODO: Manejar casos null.
 public class LabelProducto extends JLabel {
-    Producto producto;
+    private Producto producto;
     LabelProducto(Producto producto, int width, int height) {
         super();
         setSize(width, height);

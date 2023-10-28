@@ -26,7 +26,7 @@ public class PanelRetiroProducto extends JPanel implements Observador {
         this.crearAsignarComponentes();
         this.validate();
     }
-    public void crearAsignarComponentes() {
+    private void crearAsignarComponentes() {
         JPanel panelRetirarProducto = new JPanel(new BorderLayout());
 
         Producto producto = Controlador.verProductoARetirar();

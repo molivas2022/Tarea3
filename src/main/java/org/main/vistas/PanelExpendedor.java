@@ -38,7 +38,7 @@ public class PanelExpendedor extends JPanel implements Observador {
         validate();
         /* no es necesario un repaint y de hecho ni idea de cuándo podría serlo. */
     }
-    private <T> JPanel mostrarPanelDepositoProducto(Catalogo PRODUCTO, int width, int height) {
+    private JPanel mostrarPanelDepositoProducto(Catalogo PRODUCTO, int width, int height) {
         JPanel panel = new JPanel(new BorderLayout());
 
         PRODUCTO.getTipo();
