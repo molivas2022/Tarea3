@@ -6,6 +6,9 @@ class AppExpendedor {
   {method} {static} + main(String[]) : void
 }
 
+interface Observador
+
+class Controlador
 
 package "modelos" {
   class Expendedor {
@@ -68,9 +71,24 @@ package "modelos" {
 }
 
 package "vistas" {
-  class VentanaApp
-  class PanelPrincipal
-  class PanelExpendedor
+  class VentanaApp 
+  class PanelPrincipal 
+  class PanelExpendedor 
+  class PanelDeposito 
+  class PanelProducto 
+  clasS PanelMoneda 
+  class PanelBotones 
+  class PanelRetiro 
+  class PanelRetiroProducto 
+  class PanelRetiroVuelto
+}
+
+package "Swing" {
+  class JFrame
+  class JPanel
+  class JButton
+  class JRadioButton
+  class ButtonGroup
 }
 
 ' Dependencias
@@ -78,12 +96,54 @@ Expendedor ..> Producto
 Expendedor ..> Moneda
 Expendedor ..> Catalogo
 
+PanelBotones ..> EnumMoneda
+PanelBotones ..> Moneda
+PanelBotones ..> Catalogo
+
+PanelRetiroVuelto ..> Moneda
+PanelRetiroProducto ..> Producto
+
+PanelExpendedor ..> Controlador
+PanelBotones ..> Controlador
+PanelRetiroVuelto ..> Controlador
+PanelRetiro ..> Controlador
+
 ' Asociaciones
 Expendedor o-- Deposito
 Expendedor o-- Producto
+
+AppExpendedor o-- Expendedor
+VentanaApp o-- PanelPrincipal
+
+PanelPrincipal o-- PanelExpendedor
+PanelPrincipal o-- PanelBotones
+
+PanelExpendedor o-- Expendedor
+PanelExpendedor o-- PanelDeposito
+
+PanelBotones o-- PanelMoneda
+PanelBotones o-- PanelRetiro
+
+PanelRetiroVuelto o-- PanelMoneda
+PanelRetiroProducto o-- PanelProducto
+
+PanelDeposito o-- PanelMoneda
+PanelDeposito o-- PanelProducto
+
+PanelMoneda o-- Moneda
+PanelProducto o-- Producto
+PanelDeposito o-- Deposito
+
+
+' Composiciones
 AppExpendedor *-- VentanaApp
-VentanaApp *-- PanelPrincipal
-PanelPrincipal *-- PanelExpendedor
+
+Controlador *-- PanelRetiro
+Controlador *-- PanelExpendedor
+Controlador *-- Expendedor
+
+PanelRetiro *-- PanelRetiroProducto
+PanelRetiro *-- PanelRetiroVuelto
 
 ' Herencias Producto
 Producto <|-- Bebida
@@ -99,5 +159,33 @@ Moneda <|-- Moneda100
 Moneda <|-- Moneda500
 Moneda <|-- Moneda1000
 Moneda <|-- Moneda1500
+
+' Implementaciones
+Observador <|.. PanelExpendedor
+Observador <|.. PanelRetiro
+Observador <|.. PanelRetiroProducto
+Observador <|.. PanelRetiroVuelto
+
+' Swing
+JFrame <|-- VentanaApp
+JPanel <|-- PanelPrincipal
+
+JPanel <|-- PanelExpendedor
+PanelExpendedor o-- JButton
+
+JPanel <|-- PanelBotones
+PanelBotones o-- JButton
+PanelBotones o-- JRadioButton
+PanelBotones o-- ButtonGroup
+
+JPanel <|-- PanelRetiro
+JPanel <|-- PanelRetiroProducto
+JPanel <|-- PanelRetiroVuelto
+PanelRetiroVuelto o-- JButton
+PanelRetiroProducto o-- JButton
+
+JPanel <|-- PanelMoneda
+JPanel <|-- PanelProducto
+JPanel <|-- PanelDeposito
 
 @enduml
