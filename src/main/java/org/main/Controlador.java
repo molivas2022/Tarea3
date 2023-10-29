@@ -7,10 +7,14 @@ import org.main.modelos.productos.Catalogo;
 import org.main.vistas.PanelExcepcion;
 import org.main.modelos.productos.Producto;
 
-public class Controlador {
+public final class Controlador {
     private static Expendedor expendedor;
     private static Observador observadorExpendedor;
     private static Observador observadorRetiro;
+
+    private Controlador() {
+
+    }
 
     public static void comprarProducto(Moneda moneda, Catalogo producto) {
         try {
