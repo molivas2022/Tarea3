@@ -10,17 +10,20 @@ import org.main.modelos.productos.Producto;
  * @author molivas2022
  */
 public enum EnumMoneda {
-    /**Constante que describe una <code>Moneda</code> de 100 pesos.**/
+    /**Constante que describe una <code>Moneda</code> de 100 pesos.*/
     MONEDA100(100, Moneda100.class , "Moneda de 100 pesos"),
-    /**Constante que describe una <code>Moneda</code> de 500 pesos.**/
+    /**Constante que describe una <code>Moneda</code> de 500 pesos.*/
     MONEDA500(500, Moneda500.class , "Moneda de 500 pesos"),
-    /**Constante que describe una <code>Moneda</code> de 1000 pesos.**/
+    /**Constante que describe una <code>Moneda</code> de 1000 pesos.*/
     MONEDA1000(1000, Moneda1000.class , "Moneda de 1000 pesos"),
-    /**Constante que describe una <code>Moneda</code> de 1500 pesos.**/
+    /**Constante que describe una <code>Moneda</code> de 1500 pesos.*/
     MONEDA1500(1500, Moneda1500.class , "Moneda de 1500 pesos");
-    private int valor;
-    private Class tipo;
-    private String nombre;
+    /**El valor de la moneda en cuestión.*/
+    private final int valor;
+    /**La clase de la moneda en cuestión.*/
+    private final Class<?> tipo;
+    /**El nombre de la moneda en cuestión.*/
+    private final String nombre;
     private EnumMoneda(int valor, Class tipo, String nombre) {
         this.valor = valor;
         this.tipo = tipo;

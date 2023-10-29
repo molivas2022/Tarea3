@@ -12,7 +12,7 @@ public abstract class Producto {
     private String serie;
 
     /**
-     * Método constructor para un producto.
+     * Método constructor único para un producto.
      * @param serie La serie que se desea para el producto.
      */
     public Producto(String serie) {
@@ -35,8 +35,8 @@ public abstract class Producto {
     }
 
     /**
-     * Devuelve la informacion identificatoria del producto.
-     * @return La informacion del producto en formato <code>String</code>.
+     * Devuelve la información identificatoria del producto.
+     * @return La información del producto en formato <code>String</code>.
      */
     @Override
     public String toString() {
