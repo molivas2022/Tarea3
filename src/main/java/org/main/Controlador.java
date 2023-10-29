@@ -22,7 +22,7 @@ public final class Controlador {
             observadorRetiro.cambioModelo();
             observadorExpendedor.cambioModelo();
         } catch (PagoInsuficienteException | NoHayProductoException
-                 | IdProductoNoExisteException | CompraNoRetiradaException e) {
+                 | ProductoNoExiste | CompraNoRetiradaException e) {
             //Excepciones que devuelven la moneda con que se pagan hacen necesario actualizar el vuelto
             PanelExcepcion.imprimir(e);
             observadorRetiro.cambioModelo();

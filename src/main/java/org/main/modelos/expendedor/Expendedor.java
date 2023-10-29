@@ -15,7 +15,6 @@ import java.util.ArrayList;
  * @see Producto
  * @author Askorin
  * @author molivas2022
- * @version 1.0.0 17-10-2023
  */
 public class Expendedor {
 
@@ -60,13 +59,13 @@ public class Expendedor {
      * @throws PagoInsuficienteException    En caso de que la <code>Moneda</code> no cubra el valor del producto.
      * @throws PagoIncorrectoException      En caso de que la <code>Moneda</code> ingresada sea inválida (<code>null</code>).
      * @throws NoHayProductoException       En caso de que no queden unidades del producto solicitado.
-     * @throws IdProductoNoExisteException  En caso de que el producto no exista.
+     * @throws ProductoNoExiste  En caso de que el producto no exista.
      */
     public void comprarProducto(Moneda moneda, Catalogo producto)
             throws PagoInsuficienteException,
             PagoIncorrectoException,
             NoHayProductoException,
-            IdProductoNoExisteException,
+            ProductoNoExiste,
             CompraNoRetiradaException
     {
         if (moneda == null) {
@@ -74,7 +73,7 @@ public class Expendedor {
         }
 
         if (producto == null) {
-            throw new IdProductoNoExisteException("El producto no es valido.");
+            throw new ProductoNoExiste("El producto no es valido.");
         }
 
         int precio = producto.getPrecio();
