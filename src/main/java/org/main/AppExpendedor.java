@@ -3,8 +3,16 @@ import org.main.modelos.expendedor.Expendedor;
 import org.main.vistas.VentanaApp;
 import javax.swing.*;
 
+/**
+ * Aplicacion en su totalidad, incluyendo la parte logica y grafica.
+ * @author Askorin
+ * @author molivas2022
+ */
 public final class AppExpendedor {
 
+    /**
+     * Inicializa el expendedor, su interfaz grafica, y el controlador.
+     */
     private AppExpendedor() {
         // TODO: Manejar excepciónes acá.
         // TODO: Arreglar tests, ver qué hacer con clase Comprador.
@@ -19,6 +27,9 @@ public final class AppExpendedor {
         Controlador.setExpendedor(exp);
     }
 
+    /**
+     * Inicia la aplicacion en un mismo hilo.
+     */
     public static void main(String[] args) {
         /*
          * Aparentemente es thread-safe correr los códigos en su thread.

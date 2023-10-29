@@ -9,23 +9,34 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Vista del deposito de retiro del producto comprado de <code>Expendedor</code>.
+ * @author Askorin
+ * @author molivas2022
+ */
 public class PanelRetiroProducto extends JPanel implements Observador {
+    /**
+     * Constructor unico que crea la vista.
+     */
     public PanelRetiroProducto() {
         super();
         setLayout(new GridLayout(1,2));
         crearAsignarComponentes();
     }
 
-    /*
-    Metodo que se llama (o deberia llamarse) cuando ocurre un cambio en la parte del modelo
-    que esta OBSERVANDO panelRetiro.
-    Su contenido es el codigo que permite reflejar dicho cambio.
+    /**
+     * Metodo que se llama cuando cambia el estado del deposito de retiro del producto comprado.
+     * Actualiza la vista.
      */
     public void cambioModelo() {
         this.removeAll();
         this.crearAsignarComponentes();
         this.validate();
     }
+
+    /**
+     * Crea la vista del producto comprado y el boton para poder retirarlo.
+     */
     private void crearAsignarComponentes() {
         JPanel panelRetirarProducto = new JPanel(new BorderLayout());
 

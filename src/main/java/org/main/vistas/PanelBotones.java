@@ -9,7 +9,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+/**
+ * Contiene la vista y las llamadas al <code>Controlador</code> que permiten cambiar el modelo.
+ * Modela la funcion que cumple un comprador.
+ * @see Controlador
+ * @see SeleccionMultiple
+ * @author Askorin
+ * @author molivas2022
+ */
 public class PanelBotones extends JPanel {
+    /**
+     * Constructor unico.
+     */
     public PanelBotones() {
         super();
 
@@ -94,12 +105,35 @@ public class PanelBotones extends JPanel {
         }
 
     }
-    class SeleccionMultiple extends JPanel {
+
+    /**
+     * Clase auxiliar que permite crear la vista y la logica para manipular una seleccion multiple.
+     */
+    public class SeleccionMultiple extends JPanel {
+        /**
+         * Conjunto de botones
+         */
         private JRadioButton[] buttons;
+        /**
+         * Grupo que contiene el conjunto de botones.
+         */
         private ButtonGroup buttonGroup;
+
+        /**
+         * Constructor de la seleccion multiple, cuya vista es por defecto de celdas.
+         * @param title Texto que se desea imprmir como titulo de la seleccion multiple.
+         * @param options Conjunto de textos de cada boton.
+         */
         public SeleccionMultiple(String title, String[] options) {
             this(title, options, new GridLayout(1, options.length));
         }
+
+        /**
+         * Constructor de la seleccion multiple, especificando layout de la vista.
+         * @param title Texto que se desea imprmir como titulo de la seleccion multiple.
+         * @param options Conjunto de textos de cada boton.
+         * @param layout Layout de la vista.
+         */
         public SeleccionMultiple(String title, String[] options, LayoutManager layout) {
             super();
             buttons = new JRadioButton[options.length];
@@ -118,6 +152,11 @@ public class PanelBotones extends JPanel {
             this.add(new Label(title), BorderLayout.PAGE_START);
             this.add(buttonPanel, BorderLayout.CENTER);
         }
+
+        /**
+         * Devuelve el boton seleccionado.
+         * @return El boton seleccionado, devuelve <code>null</code> si no se ha seleccionado ninguno.
+         */
         public JRadioButton getSelected() {
             for (JRadioButton button : buttons) {
                 if (button.isSelected()) {
@@ -126,6 +165,11 @@ public class PanelBotones extends JPanel {
             }
             return null;
         }
+
+        /**
+         * Devuelve el conjunto de botones de la seleccion multiple.
+         * @return Array de botones.
+         */
         public JRadioButton[] getButtons() {
             return buttons;
         }
