@@ -13,6 +13,9 @@ public class Deposito<T> {
     /**<code>ArrayList</code> usado para guardar los objetos que se ingresen*/
     final private ArrayList<T> objetos;
 
+    /**
+     * Constructor único de Expendedor.
+     */
     public Deposito() {
         this.objetos = new ArrayList<>();
     }

@@ -27,12 +27,11 @@ public class Expendedor {
     private Producto compra;
     /**Capacidad de cantidad máxima de productos a almacenar.**/
     private final int CAPACIDAD = 6;
+    /**Número serie que debe poseer el siguiente producto a rellenar. para uso del expendedor.**/
     private int primerNumSerie;
 
     /**
-     *
-     *  Constructor unico de Expendedor, recibe el numero de productos
-     * con que debe rellenar sus depositos.
+     * Constructor único de Expendedor.
      */
     public Expendedor() {
         depositosProducto = new ArrayList<>();
@@ -45,7 +44,7 @@ public class Expendedor {
         /*
          * Llenamos los depósitos del expendedor con la cantidad especificada.
          * las ids de los productos serán numeros enteros sucesivos vueltos String.
-         * Los números de serie partirán desde el 100.
+         * estos partiran desde el 100.
          */
 
         primerNumSerie = 100;
@@ -54,12 +53,14 @@ public class Expendedor {
     }
 
     /**
-     * Efectua la compra de un producto a cambio de una moneda.
-     * @param moneda Moneda con cual se quiere comprar el producto.
-     * @throws PagoInsuficienteException    En caso de que la moneda no cubra el valor del producto.
-     * @throws PagoIncorrectoException      En caso de que la moneda ingresada sea invalida (<code>null</code>).
+     * Efectúa la compra de un <code>Producto</code> a cambio de una moneda y lo guarda en
+     * su depósito de producto a ser retirado.
+     * @param moneda <code>Moneda</code> con cual se quiere comprar el producto.
+     * @param producto Enum correspondiente al <code>Producto</code> que se desea comprar.
+     * @throws PagoInsuficienteException    En caso de que la <code>Moneda</code> no cubra el valor del producto.
+     * @throws PagoIncorrectoException      En caso de que la <code>Moneda</code> ingresada sea inválida (<code>null</code>).
      * @throws NoHayProductoException       En caso de que no queden unidades del producto solicitado.
-     * @throws IdProductoNoExisteException  En caso de que el identificador numerico sea invalido.
+     * @throws IdProductoNoExisteException  En caso de que el producto no exista.
      */
     public void comprarProducto(Moneda moneda, Catalogo producto)
             throws PagoInsuficienteException,
@@ -70,6 +71,10 @@ public class Expendedor {
     {
         if (moneda == null) {
             throw new PagoIncorrectoException("No se ha hecho ingreso de una moneda.");
+        }
+
+        if (producto == null) {
+            throw new IdProductoNoExisteException("El producto no es valido.");
         }
 
         int precio = producto.getPrecio();
@@ -97,6 +102,9 @@ public class Expendedor {
         this.compra = compra;
     }
 
+    /**
+     * Rellena el <code>Expendedor</code> hasta su capacidad máxima.
+     */
     public void rellenar() {
         int i = 0;
         for (Catalogo c : Catalogo.values()) {
@@ -112,7 +120,8 @@ public class Expendedor {
 
     /**
      * Permite extraer el vuelto de la compra moneda por moneda.
-     * @return Devuelve una moneda de 100 pesos si falta por retirar vuelto, en caso contrario, devuelve <code>null</code>.
+     * @return Devuelve una <code>Moneda</code>de 100 pesos si falta por retirar vuelto, en caso contrario, lanza excepción.
+     * @throws RetirarVacioException en caso de que no quede una <code>Moneda</code> en el depósito de vuelto.
      */
     public Moneda getVuelto() throws RetirarVacioException {
         Moneda vuelto = depVuelto.getObjeto();
@@ -122,10 +131,24 @@ public class Expendedor {
         return vuelto;
     }
 
+    /**
+     * Método getter para los depósitos de <code>Producto</code> de la instancia de <code>Expendedor</code>
+     * @return Devuelve un <code>ArrayList</code> de <code>Deposito</code>.
+     */
     public ArrayList<Deposito<Producto>> getDepositosProducto() {return depositosProducto;}
+
+    /**
+     * Método getter para un depósito de <code>Producto</code> de la instancia de <code>Expendedor</code> correspondiente al <code>Enum</code> del <code>Producto</code>
+     * @return Devuelve un <code>Deposito</code> de <code>Producto</code>.
+     */
     public Deposito<Producto> getDepositoProducto(Catalogo producto) {
         return depositosProducto.get(producto.ordinal());
     }
+
+    /**
+     * Método getter para el vuelto de una instancia de <code>Expendedor</code> en formato <code>Array</code>
+     * @return Devuelve un <code>Array</code> de <code>Moneda</code>.
+     */
     public Moneda[] peekVuelto() {
         Moneda[] vuelto = new Moneda[depVuelto.cuantosObjetos()];
         for (int i = 0; i < depVuelto.cuantosObjetos(); i++) {
@@ -134,13 +157,27 @@ public class Expendedor {
         return vuelto;
     }
 
+    /**
+     * Método getter para el vuelto de una instancia de <code>Expendedor</code>.
+     * @return Devuelve un <code>ArrayList</code> de <code>Moneda</code>.
+     */
     public Deposito<Moneda> getDepVuelto() {
         return depVuelto;
     }
 
+    /**
+     * Método getter para la compra guardada en una instancia de <code>Expendedor</code> sin "retirarla".
+     * @return Devuelve un <code>Producto</code>.
+     */
     public Producto peekCompra() {
         return compra;
     }
+
+    /**
+     * Método para conseguir la compra guardada en una instancia de <code>Expendedor</code>, así retirándola."
+     * @return Devuelve un <code>Producto</code>.
+     * @throws RetirarVacioException en caso de no haber compra para retirar.
+     */
     public Producto getCompra() throws RetirarVacioException {
         if (this.compra == null) {
             throw new RetirarVacioException("No hay producto que retirar.");
