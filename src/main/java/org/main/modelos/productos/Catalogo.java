@@ -39,7 +39,7 @@ public enum Catalogo {
      * Constructor unico de los productos.
      * @param precio Precio del producto.
      */
-    Catalogo (int precio, Class tipo, String nombre, String pathSprite) {
+    Catalogo (int precio, Class<?> tipo, String nombre, String pathSprite) {
         this.precio = precio;
         this.tipo = tipo;
         this.nombre = nombre;
@@ -125,7 +125,7 @@ public enum Catalogo {
      * @param tipo El tipo sobre el que se desea hacer match.
      * @return la enumeración que corresponde al parámetro ingresado.
      */
-    static public Catalogo matchTipo(Class tipo) {
+    static public Catalogo matchTipo(Class<?> tipo) {
         for (Catalogo c : Catalogo.values()) {
             if (c.getTipo().equals(tipo)) {
                 return c;

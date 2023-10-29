@@ -1,8 +1,5 @@
 package org.main.modelos.moneda;
 
-import org.main.modelos.expendedor.Deposito;
-import org.main.modelos.productos.Producto;
-
 /**
  * Una enumeración que maneja información relevante de la clase <code>Moneda</code>.
  * @see Moneda
@@ -24,7 +21,7 @@ public enum EnumMoneda {
     private final Class<?> tipo;
     /**El nombre de la moneda en cuestión.*/
     private final String nombre;
-    private EnumMoneda(int valor, Class tipo, String nombre) {
+    EnumMoneda(int valor, Class<?> tipo, String nombre) {
         this.valor = valor;
         this.tipo = tipo;
         this.nombre = nombre;
