@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.main"},{"l":"org.main.comprador"},{"l":"org.main.customexception"},{"l":"org.main.expendedor"},{"l":"org.main.moneda"},{"l":"org.main.productos"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.main"},{"l":"org.main.customexception"},{"l":"org.main.modelos.expendedor"},{"l":"org.main.modelos.moneda"},{"l":"org.main.modelos.productos"},{"l":"org.main.vistas"}];updateSearchResults();

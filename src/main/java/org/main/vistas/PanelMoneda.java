@@ -8,16 +8,43 @@ import java.io.IOException;
 
 import org.main.modelos.moneda.*;
 
+/**
+ * Vista de una <code>Moneda</code>.
+ * @see Moneda
+ * @author Askorin
+ * @author molivas2022
+ */
 public class PanelMoneda extends JPanel {
+    /**
+     * <code>Moneda</code> que se quiere graficar.
+     */
     private Moneda moneda;
+
+    /**
+     * Trunca la <code>serie</code>(Dirección de la referencia) de una <code>Moneda</code>
+     * ignorando lo que esta a la izquierda del <code>@</code> (incluyendolo).
+     * @return <code>Serie</code> truncada como <code>String</code>.
+     */
     private String truncatedSerie() {
         String serie = moneda.getSerie();
         String[] split = serie.split("@");
         return split[split.length - 1];
     }
+
+    /**
+     * Deuelve el <code>valor</code> de la <code>Moneda</code> como un <code>String</code>.
+     * @return <code>String</code> que contiene el valor de la <code>Moneda</code>.
+     */
     private String valorAsString() {
         return Integer.toString(moneda.getValor());
     }
+
+    /**
+     * Constructor de la vista.
+     * @param moneda <code>Moneda</code> que se quiere graficar.
+     * @param width La anchura de la vista.
+     * @param height La altura de la vista.
+     */
     public PanelMoneda(Moneda moneda, int width, int height) {
         super();
         this.moneda = moneda;
@@ -32,6 +59,12 @@ public class PanelMoneda extends JPanel {
         this.add(new TextoSimple( truncatedSerie(), height/8,height/4));
 
     }
+
+    /**
+     * Grafica la <code>Moneda</code>.
+     * Especificamente: una imagen de una moneda, y por encima, el <code>valor</code> y la <code>serie</code>.
+     * @param g  Contexto grafico en cual pintar.
+     */
     public void paint(Graphics g) {
         //TODO: Añadir colores que representan valores
         super.paint(g);
@@ -59,12 +92,22 @@ public class PanelMoneda extends JPanel {
         g.drawImage(reImg, 0, 0, null);
         paintComponents(g);
     }
-    class TextoSimple extends JLabel {
-        public TextoSimple(String texto, int tamaño_font, int tamaño_label) {
+
+    /**
+     * Clase auxiliar que facilita imprimir el texto de <code>PanelMoneda</code>.
+     */
+    private class TextoSimple extends JLabel {
+        /**
+         * Constructor del <code>JLabel</code> que contiene el texto.
+         * @param texto Texto deseado.
+         * @param size_font Longitud de la letra del texto.
+         * @param size_label Longitud vertical del espacio que ocupa el <code>JLabel</code> de texto.
+         */
+        public TextoSimple(String texto, int size_font, int size_label) {
             super(texto, JLabel.CENTER);
-            setFont(new Font("Arial", Font.BOLD, tamaño_font));
-            setPreferredSize(new Dimension(PanelMoneda.this.getWidth(), tamaño_label));
-            setSize(PanelMoneda.this.getWidth(), tamaño_label);
+            setFont(new Font("Arial", Font.BOLD, size_font));
+            setPreferredSize(new Dimension(PanelMoneda.this.getWidth(), size_label));
+            setSize(PanelMoneda.this.getWidth(), size_label);
         }
     }
 }

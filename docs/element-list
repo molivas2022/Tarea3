@@ -1,6 +1,6 @@
 org.main
-org.main.comprador
 org.main.customexception
-org.main.expendedor
-org.main.moneda
-org.main.productos
+org.main.modelos.expendedor
+org.main.modelos.moneda
+org.main.modelos.productos
+org.main.vistas
