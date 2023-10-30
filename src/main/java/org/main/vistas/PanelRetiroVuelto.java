@@ -42,7 +42,6 @@ public class PanelRetiroVuelto extends JPanel implements Observador {
 
         Moneda[] monedas = Controlador.verVuelto();
         JPanel panelMonedas = new JPanel(new FlowLayout());
-        panelMonedas.setPreferredSize(new Dimension(250,120));
         panelMonedas.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
         if (monedas != null) {
@@ -50,9 +49,7 @@ public class PanelRetiroVuelto extends JPanel implements Observador {
                 panelMonedas.add(new PanelMoneda(monedas[i], 48, 48));
             }
         }
-        JPanel centrarPanelMonedas = new JPanel(new GridBagLayout());
-        centrarPanelMonedas.add(panelMonedas);
-        panelRetirarVuelto.add(centrarPanelMonedas, BorderLayout.CENTER);
+        panelRetirarVuelto.add(panelMonedas, BorderLayout.CENTER);
 
         JButton button = new JButton("Retirar vuelto");
         button.addActionListener(new ActionListener() {
