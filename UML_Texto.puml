@@ -1,4 +1,4 @@
-@startuml UML_Imagen
+@startuml
 hide empty methods
 hide empty fields
 
@@ -162,21 +162,21 @@ package "Swing" {
 }
 
 ' Dependencias
-Expendedor ..> Producto
-Expendedor ..> Moneda
-Expendedor ..> Catalogo
+'Expendedor ..> Producto
+'Expendedor ..> Moneda
+'Expendedor ..> Catalogo
 
-PanelBotones ..> EnumMoneda
-PanelBotones ..> Moneda
-PanelBotones ..> Catalogo
+'PanelBotones ..> EnumMoneda
+'PanelBotones ..> Moneda
+'PanelBotones ..> Catalogo
 
-PanelRetiroVuelto ..> Moneda
-PanelRetiroProducto ..> Producto
+'PanelRetiroVuelto ..> Moneda
+'PanelRetiroProducto ..> Producto
 
-PanelExpendedor ..> Controlador
-PanelBotones ..> Controlador
-PanelRetiroVuelto ..> Controlador
-PanelRetiro ..> Controlador
+'PanelExpendedor ..> Controlador
+'PanelBotones ..> Controlador
+'PanelRetiroVuelto ..> Controlador
+'PanelRetiro ..> Controlador
 
 ' Asociaciones y Agregaciones
 Expendedor o-- Deposito
