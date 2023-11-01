@@ -13,7 +13,7 @@ import java.io.IOException;
 public class LabelProducto extends JLabel {
 
     /** El <code>Producto</code> a visualizar. */
-    Producto producto;
+    private Producto producto;
 
     /**
      * Constructor único para la clase.

@@ -1,5 +1,5 @@
-# Tarea2
-Segunda tarea del curso de Programación II.
+# Tarea3
+Tercera tarea del curso de Programación II.
 
 | Integrante                      | Matrícula  |
 |---------------------------------|------------|
