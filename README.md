@@ -8,7 +8,7 @@ Tercera tarea del curso de Programación II.
 
 ------------------------------------------------
 
-## <a href = "https://molivas2022.github.io/Tarea2/">Documentación</a>
+## <a href = "https://molivas2022.github.io/Tarea3/">Documentación</a>
 
 ------------------------------------------------
 
