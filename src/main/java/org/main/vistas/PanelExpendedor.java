@@ -10,14 +10,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase donde se muestran los productos del expendedor.
+ */
 public class PanelExpendedor extends JPanel implements Observador {
     private Expendedor exp;
+
+    /**
+     * Constructor único para la clase.
+     * @param exp El expendedor a ocuparse para la aplicación
+     */
     public PanelExpendedor(Expendedor exp) {
         super();
         this.exp = exp;
         setLayout(new GridLayout(6,1));
         crearAsignarComponentes();
     }
+
     private void crearAsignarComponentes() {
         for (int i = 0; i < Catalogo.values().length; i++) {
             add( mostrarPanelDepositoProducto(Catalogo.values()[i], 64, 64) );
@@ -31,6 +40,10 @@ public class PanelExpendedor extends JPanel implements Observador {
         });
         add(botonRelleno);
     }
+
+    /**
+     * Método implementado de interfaz <code>Observador</code>, a usarse cuando se ha hecho un cambio en el modelo.
+     */
     public void cambioModelo() {
         removeAll();
         crearAsignarComponentes();

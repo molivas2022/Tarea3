@@ -69,7 +69,6 @@ public class PanelBotones extends JPanel {
         });
 
         //Botones Seleccion Moneda
-        //TODO: Toda esta sección necesita refactor
         for (JRadioButton b: selMoneda.getButtons()) {
             b.addItemListener(new ItemListener() {
                 @Override
@@ -94,12 +93,29 @@ public class PanelBotones extends JPanel {
         }
 
     }
+
+    /**
+     * Clase de selección multiple para uso en <code>PanelBotones</code>.
+     */
     class SeleccionMultiple extends JPanel {
         private JRadioButton[] buttons;
         private ButtonGroup buttonGroup;
+
+        /**
+         * Constructor para la clase.
+         * @param title El título.
+         * @param options Las opciones a usar.
+         */
         public SeleccionMultiple(String title, String[] options) {
             this(title, options, new GridLayout(1, options.length));
         }
+
+        /**
+         * Constructor para la clase con uso de <code>LayoutManager</code>.
+         * @param title El título.
+         * @param options Las opciones a usar.
+         * @param layout El <code>LayoutManager</code> a usar.
+         */
         public SeleccionMultiple(String title, String[] options, LayoutManager layout) {
             super();
             buttons = new JRadioButton[options.length];
@@ -118,6 +134,11 @@ public class PanelBotones extends JPanel {
             this.add(new Label(title), BorderLayout.PAGE_START);
             this.add(buttonPanel, BorderLayout.CENTER);
         }
+
+        /**
+         * Método que retorna el botón seleccionado de una <code>SeleccionMultiple</code>
+         * @return JRadioButton el botón seleccionado, o <code>null</code>.
+         */
         public JRadioButton getSelected() {
             for (JRadioButton button : buttons) {
                 if (button.isSelected()) {
@@ -126,6 +147,11 @@ public class PanelBotones extends JPanel {
             }
             return null;
         }
+
+        /**
+         * Método getter para los botones de una <code>SeleccionMultiple</code>
+         * @return JRadioButton[] Los botones en un arreglo.
+         */
         public JRadioButton[] getButtons() {
             return buttons;
         }
