@@ -13,6 +13,9 @@ public class Deposito<T> {
     /**<code>ArrayList</code> usado para guardar los objetos que se ingresen*/
     final private ArrayList<T> objetos;
 
+    /**
+     * Constructor único de Expendedor.
+     */
     public Deposito() {
         this.objetos = new ArrayList<>();
     }
@@ -40,10 +43,20 @@ public class Deposito<T> {
             return objetos.remove(0);
         }
     }
+
+    /**
+     * Método getter para conseguir la cantidad de objetos almacenada en un <code>Deposito</code>.
+     * @return Un entero, la cantidad de objetos en el <code>Deposito</code>.
+     */
     public int cuantosObjetos() {
         return objetos.size();
     }
 
+    /**
+     * Método getter para conseguir el i-ésimo elemento de un depósito sin retirarlo.
+     * @param i El índice del objeto que se quiere observar.
+     * @return El objeto de tipo <code>T</code> almacenada en la i-ésima posición.
+     */
     public T peekObjeto(int i) {
         if (i >= objetos.size() || i < 0) {
             return null;

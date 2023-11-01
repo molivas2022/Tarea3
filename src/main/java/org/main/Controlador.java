@@ -14,7 +14,8 @@ import org.main.modelos.productos.Producto;
  * @author Askorin
  * @author molivas2022
  */
-public class Controlador {
+public final class Controlador {
+
     /**
      * Referencia al modelo <code>Expendedor</code>.
      */
@@ -28,6 +29,10 @@ public class Controlador {
      */
     private static Observador observadorRetiro;
 
+    private Controlador() {
+
+    }
+
     /**
      * Permite efectuar una compra del <code>Expendedor</code>.
      * @param moneda <code>Moneda</code> con que se efectua la compra.
@@ -39,7 +44,7 @@ public class Controlador {
             observadorRetiro.cambioModelo();
             observadorExpendedor.cambioModelo();
         } catch (PagoInsuficienteException | NoHayProductoException
-                 | IdProductoNoExisteException | CompraNoRetiradaException e) {
+                 | ProductoNoExiste | CompraNoRetiradaException e) {
             //Excepciones que devuelven la moneda con que se pagan hacen necesario actualizar el vuelto
             PanelExcepcion.imprimir(e);
             observadorRetiro.cambioModelo();

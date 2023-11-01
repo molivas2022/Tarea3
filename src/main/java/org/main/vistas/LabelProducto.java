@@ -7,9 +7,20 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-// TODO: Manejar casos null.
+/**
+ * Clase para visualizar un <code>Producto</code> .
+ */
 public class LabelProducto extends JLabel {
+
+    /** El <code>Producto</code> a visualizar. */
     private Producto producto;
+
+    /**
+     * Constructor único para la clase.
+     * @param producto El <code>Producto</code> que se quiere mostrar.
+     * @param width Su dimensión de ancho.
+     * @param height Su dimnesión de alto.
+     */
     LabelProducto(Producto producto, int width, int height) {
         super();
         setSize(width, height);

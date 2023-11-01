@@ -80,7 +80,6 @@ public class PanelBotones extends JPanel {
         });
 
         //Botones Seleccion Moneda
-        //TODO: Toda esta sección necesita refactor
         for (JRadioButton b: selMoneda.getButtons()) {
             b.addItemListener(new ItemListener() {
                 @Override
@@ -121,7 +120,7 @@ public class PanelBotones extends JPanel {
 
         /**
          * Constructor de la seleccion multiple, cuya vista es por defecto de celdas.
-         * @param title Texto que se desea imprmir como titulo de la seleccion multiple.
+         * @param title Texto que se desea imprimir como titulo de la seleccion multiple.
          * @param options Conjunto de textos de cada boton.
          */
         public SeleccionMultiple(String title, String[] options) {
@@ -165,7 +164,6 @@ public class PanelBotones extends JPanel {
             }
             return null;
         }
-
         /**
          * Devuelve el conjunto de botones de la seleccion multiple.
          * @return Array de botones.
